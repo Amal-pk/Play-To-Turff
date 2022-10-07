@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:turf_app/view/core.dart';
+import 'package:turf_app/view/emailverification/view/email_verification.dart';
+import 'package:turf_app/view/login_page/view_controller/login_controller.dart';
+import 'package:turf_app/view/mobilenumber/view/mobilenumber.dart';
 import 'package:turf_app/view/register_page/view/register_page.dart';
 
 class BottomContainer extends StatelessWidget {
@@ -7,6 +11,7 @@ class BottomContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<LoginController>(context, listen: false);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Container(
@@ -24,7 +29,12 @@ class BottomContainer extends StatelessWidget {
         children: [
           height50,
           ElevatedButton(
-            onPressed: (() {}),
+            onPressed: (() {
+              
+              controller.signin(context);
+              controller.emailController.clear();
+              controller.passwordController.clear();
+            }),
             style: ButtonStyle(
               elevation: MaterialStateProperty.all(0),
               backgroundColor: MaterialStateProperty.all(
@@ -116,9 +126,11 @@ class BottomContainer extends StatelessWidget {
                 onPressed: (() {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => RegisterPage(),
+                      builder: (context) => MobileNumber(),
                     ),
                   );
+                  controller.emailController.clear();
+                  controller.passwordController.clear();
                 }),
                 child: const Text(
                   "Sign up",

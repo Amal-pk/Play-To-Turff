@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/core.dart';
-import 'package:turf_app/view/login_page/view_controller/login_controller.dart';
 import 'package:turf_app/view/login_page/view/widgets/bottom_area.dart';
 import 'package:turf_app/view/login_page/view/widgets/widget.dart';
+import 'package:turf_app/view/mobilenumber/controller/controller.dart';
+import 'package:turf_app/view/mobilenumber/view/widget/bottom_area.dart';
 import 'package:turf_app/view/register_page/view/widget/textfield.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class MobileNumber extends StatelessWidget {
+  const MobileNumber({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<LoginController>(context, listen: false);
+    final controller = Provider.of<MobileOtpController>(context, listen: false);
     final height = MediaQuery.of(context).size.height;
     // final width = MediaQuery.of(context).size.width;
     return SafeArea(
@@ -19,22 +20,18 @@ class LoginPage extends StatelessWidget {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Form(
-            key: controller.formkey,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
                   height: height / 8.3,
                 ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 16.0),
-                  child: Text(
-                    'HELLO',
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
+                const Text(
+                  'HELLO',
+                  style: TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
                   ),
                 ),
                 const Padding(
@@ -53,30 +50,11 @@ class LoginPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: TextFieldWidget(
-                    controller: controller.emailController,
-                    hint: 'Email',
-                    icon: Icons.email,
+                    controller: controller.mobileNumberTextfield,
+                    hint: 'Mobile Number',
+                    icon: Icons.phone_android,
                     validator: '',
-                    keybord: TextInputType.emailAddress,
-                  ),
-                ),
-                height20,
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0, right: 16),
-                  child: TextFieldWidgets(
-                    controller: controller.passwordController,
-                    hint: 'Password',
-                    icon: Icons.password_sharp,
-                    validator: '',
-                    keybord: TextInputType.visiblePassword,
-                    suffIcon: IconButton(
-                      onPressed: () {
-                        controller.isobscure();
-                      },
-                      icon: controller.obscure
-                          ? const Icon(Icons.visibility_off)
-                          : const Icon(Icons.visibility),
-                    ),
+                    keybord: TextInputType.phone,
                   ),
                 ),
                 Row(
@@ -85,7 +63,7 @@ class LoginPage extends StatelessWidget {
                     TextButton(
                       onPressed: (() {}),
                       child: const Text(
-                        "Forgot Password",
+                        "Login With Email",
                         style: TextStyle(
                           color: Colors.black,
                         ),
@@ -93,8 +71,12 @@ class LoginPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                height50,
-                const BottomContainer()
+                ElevatedButton(
+                  onPressed: (() {
+                    controller.loginMobileOtp(context);
+                  }),
+                  child: Text('login'),
+                )
               ],
             ),
           ),

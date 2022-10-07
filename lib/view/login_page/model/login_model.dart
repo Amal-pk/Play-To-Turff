@@ -2,8 +2,8 @@ class LoginModel {
   String? email;
   String? password;
   LoginModel({
-    this.email,
-    this.password,
+    required this.email,
+    required this.password,
   });
   factory LoginModel.fromJson(Map<String, dynamic> json) {
     return LoginModel(
@@ -15,4 +15,21 @@ class LoginModel {
         'user_mail': email,
         'user_password': password,
       };
+}
+
+class LoginRespoModel {
+  String? message;
+  bool? status;
+
+  LoginRespoModel({
+    required this.message,
+    required this.status,
+  });
+
+  factory LoginRespoModel.fromJson(Map<String, dynamic> json) {
+    return LoginRespoModel(
+      message: json['message'],
+      status: json['status'],
+    );
+  }
 }

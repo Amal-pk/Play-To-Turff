@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/login_page/view_controller/login_controller.dart';
 
-class TextFieldWidgets extends StatelessWidget {
- const TextFieldWidgets({
+class TextFieldWidget extends StatelessWidget {
+  const TextFieldWidget({
     Key? key,
     required this.hint,
     required this.validator,
@@ -16,13 +16,12 @@ class TextFieldWidgets extends StatelessWidget {
   final TextInputType keybord;
   final String hint;
   final String validator;
- final Widget? suffIcon;
+  final Widget? suffIcon;
   final IconData icon;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      obscureText: Provider.of<LoginController>(context, listen: true).obscure,
       decoration: InputDecoration(
         hintText: hint,
         prefixIcon: Icon(
