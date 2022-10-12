@@ -24,7 +24,7 @@ class PinCodeVerificationScreen extends StatelessWidget {
             SizedBox(
               height: height * 0.07,
             ),
-            Text(
+            const Text(
               'Verification Code',
               style: TextStyle(
                 fontWeight: FontWeight.w700,
@@ -36,14 +36,14 @@ class PinCodeVerificationScreen extends StatelessWidget {
               height: 8.0,
             ),
             RichText(
-              text: TextSpan(
+              text: const TextSpan(
                 children: [
                   TextSpan(
                     text:
                         'Please enter the verification code that we have sent to your email ',
                     style: TextStyle(
                       fontSize: 14.0,
-                      color: const Color(0xff808d9e),
+                      color: Color(0xff808d9e),
                       fontWeight: FontWeight.w400,
                       height: 1.5,
                     ),
@@ -78,7 +78,7 @@ class PinCodeVerificationScreen extends StatelessWidget {
                   defaultPinTheme: PinTheme(
                     height: 60.0,
                     width: 60.0,
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       fontSize: 24.0,
                       color: Colors.black,
                       fontWeight: FontWeight.w700,
@@ -95,7 +95,7 @@ class PinCodeVerificationScreen extends StatelessWidget {
                   focusedPinTheme: PinTheme(
                     height: 60.0,
                     width: 60.0,
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       fontSize: 24.0,
                       color: Colors.green,
                       fontWeight: FontWeight.w700,

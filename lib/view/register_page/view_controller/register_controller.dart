@@ -1,52 +1,37 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turf_app/view/emailverification/view/email_verification.dart';
-import 'package:turf_app/view/homepage/view/home_page.dart';
 import 'package:turf_app/view/login_page/view/login_page.dart';
 import 'package:turf_app/view/register_page/model/register_model.dart';
 import 'package:turf_app/view/register_page/service/register_service.dart';
 
-class RegisterController extends ChangeNotifier {
-  final nameController = TextEditingController();
-  final phoneController = TextEditingController();
-  final conformController = TextEditingController();
+class SignupController extends ChangeNotifier {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  SignUpRespoModel? signUpRespoModel;
 
-  void clearData(context) {
-    nameController.clear();
-    phoneController.clear();
-    conformController.clear();
-    emailController.clear();
-    passwordController.clear();
-  }
-
-  userCreation(context) {
-    final registerService = RegisterService();
-    final name = nameController.text.trim();
-    final phone = phoneController.text.trim();
+  void createUser(context) async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
-    final conform = conformController.text.trim();
-    if (name.isEmpty ||
-        phone.isEmpty ||
-        email.isEmpty ||
-        password.isEmpty ||
-        conform.isEmpty) {
-      const Text('Empty');
+    print('xfkmvnjzdnvn');
+    if (email.isEmpty || password.isEmpty) {
+      return;
     } else {
-      RegisterModel value = RegisterModel(
-        userEmail: email,
-        userPassword: password,
-      );
-      registerService.signupUser(value.tojson());
-      Navigator.push(
-        context,
-        MaterialPageRoute(
+      SignUpModel value = SignUpModel(userMail: email, userPassword: password);
+      signUpRespoModel =
+          await SignupService.instance.signupUser(value, context);
+      if (signUpRespoModel!.status == true) {
+        log(signUpRespoModel!.status.toString());
+        Navigator.push(
+          context,
+          MaterialPageRoute(
             builder: (context) =>
-                const PinCodeVerificationScreen('amalpkdrv@gmail.com')),
-      );
+                const PinCodeVerificationScreen('amalpkdrv@gmail.com'),
+          ),
+        );
+      }
     }
     saveToSharedPref();
   }
@@ -65,11 +50,16 @@ class RegisterController extends ChangeNotifier {
     final savedEmailValue = sharedPrefrence.getString('email');
     final savedPasswordValue = sharedPrefrence.getString('password');
     if (savedEmailValue != null || savedPasswordValue != null) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+      // Navigator.push(
+      // context, MaterialPageRoute(builder: (context) => Homepage())
+      // );
     } else {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LoginPage(),
+        ),
+      );
     }
   }
 
@@ -78,17 +68,13 @@ class RegisterController extends ChangeNotifier {
     sharedPrefrence.remove('email');
     sharedPrefrence.remove('password');
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => HomePage(),
-      ),
-    );
+    // Navigator.push(
+    //     context, MaterialPageRoute(builder: (context) => Homepage()));
   }
 
   // ignore: non_constant_identifier_names
   String? SignupPsswrdValidation(value) {
-    if (value!.isEmpty) {
+    if (value!.isEmpty && value == null) {
       return 'Password is empty';
     }
     return null;
@@ -96,9 +82,17 @@ class RegisterController extends ChangeNotifier {
 
   // ignore: non_constant_identifier_names
   String? SignupEmailValidation(value) {
-    if (value!.isEmpty) {
+    if (value!.isEmpty && value == null) {
       return 'Email is empty';
     }
     return null;
+  }
+
+  clearData(context) {
+    // nameController.clear();
+    // phoneController.clear();
+    // conformController.clear();
+    emailController.clear();
+    passwordController.clear();
   }
 }

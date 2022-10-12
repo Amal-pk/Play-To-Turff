@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
-import 'package:turf_app/view/emailverification/view_controller/controller.dart';
-import 'package:turf_app/view/register_page/view/register_page.dart';
+import 'package:turf_app/view/mobile_verification/controller/mobileveri_controller.dart';
+import 'package:turf_app/view/mobilenumber/controller/controller.dart';
 
 class MobileVerificationScreen extends StatelessWidget {
   const MobileVerificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<MobileOtpController>(context, listen: false);
+    final mobileVerController =
+        Provider.of<MobileVerificationController>(context);
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    final emailVerificationController =
-        Provider.of<EmailVerificationController>(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -24,7 +26,7 @@ class MobileVerificationScreen extends StatelessWidget {
             SizedBox(
               height: height * 0.07,
             ),
-            Text(
+            const Text(
               'Verification Code',
               style: TextStyle(
                 fontWeight: FontWeight.w700,
@@ -38,18 +40,18 @@ class MobileVerificationScreen extends StatelessWidget {
             RichText(
               text: TextSpan(
                 children: [
-                  TextSpan(
+                  const TextSpan(
                     text:
-                        'Please enter the verification code that we have sent to your email ',
+                        'Please enter the verification code that we have sent to your Number ',
                     style: TextStyle(
                       fontSize: 14.0,
-                      color: const Color(0xff808d9e),
+                      color: Color(0xff808d9e),
                       fontWeight: FontWeight.w400,
                       height: 1.5,
                     ),
                   ),
                   TextSpan(
-                    text: '8606586632 ',
+                    text: controller.mobileNumberTextfield.text.trim(),
                     style: TextStyle(
                       fontSize: 14.0,
                       color: Colors.green[700],
@@ -70,15 +72,14 @@ class MobileVerificationScreen extends StatelessWidget {
               child: SizedBox(
                 width: width,
                 child: Pinput(
-                  controller:
-                      emailVerificationController.emailEditingController,
-                  length: 4,
+                  controller: mobileVerController.phoneEditingController,
+                  length: 6,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   defaultPinTheme: PinTheme(
                     height: 60.0,
                     width: 60.0,
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       fontSize: 24.0,
                       color: Colors.black,
                       fontWeight: FontWeight.w700,
@@ -95,7 +96,7 @@ class MobileVerificationScreen extends StatelessWidget {
                   focusedPinTheme: PinTheme(
                     height: 60.0,
                     width: 60.0,
-                    textStyle: TextStyle(
+                    textStyle: const TextStyle(
                       fontSize: 24.0,
                       color: Colors.black,
                       fontWeight: FontWeight.w700,
@@ -131,10 +132,8 @@ class MobileVerificationScreen extends StatelessWidget {
             const Expanded(child: SizedBox()),
             InkWell(
               onTap: () {
-                emailVerificationController.verifyEmailOtp(context);
+                mobileVerController.verifyMobileOtp(context);
                 print('object');
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()));
               },
               borderRadius: BorderRadius.circular(30.0),
               child: Ink(

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/core.dart';
-import 'package:turf_app/view/login_page/view/widgets/bottom_area.dart';
-import 'package:turf_app/view/login_page/view/widgets/widget.dart';
+import 'package:turf_app/view/emailverification/view/email_verification.dart';
 import 'package:turf_app/view/mobilenumber/controller/controller.dart';
-import 'package:turf_app/view/mobilenumber/view/widget/bottom_area.dart';
+import 'package:turf_app/view/register_page/view/register_page.dart';
 import 'package:turf_app/view/register_page/view/widget/textfield.dart';
 
 class MobileNumber extends StatelessWidget {
@@ -61,7 +60,14 @@ class MobileNumber extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: (() {}),
+                      onPressed: (() {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => RegisterPage()),
+                          ),
+                        );
+                      }),
                       child: const Text(
                         "Login With Email",
                         style: TextStyle(
@@ -74,6 +80,7 @@ class MobileNumber extends StatelessWidget {
                 ElevatedButton(
                   onPressed: (() {
                     controller.loginMobileOtp(context);
+                    controller.mobileNumberTextfield.clear();
                   }),
                   child: Text('login'),
                 )

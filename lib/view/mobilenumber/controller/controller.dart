@@ -1,25 +1,27 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turf_app/view/mobilenumber/model/model.dart';
+import 'package:turf_app/view/mobile_verification/view/mobileverification.dart';
 import 'package:turf_app/view/mobilenumber/service/service.dart';
-import 'package:turf_app/view/mobilenumber/view/verification/mobileverification.dart';
 
 class MobileOtpController extends ChangeNotifier {
-  final mobileNumberTextfield = TextEditingController();
-
+  final TextEditingController mobileNumberTextfield = TextEditingController();
+  String? mobileId;
   loginMobileOtp(context) {
-    final mobileVerificationServiceProvider = MobileVerificationServices();
-
     final number = mobileNumberTextfield.text.trim();
 
     if (number.isEmpty) {
       const Text('empty qurie');
     } else {
-      MobileVerificationModel value = MobileVerificationModel(
-        number: number,
-      );
-      mobileVerificationServiceProvider.otpverfyimg(value.tojson());
+      MobileNumberRespoModel value = MobileNumberRespoModel(number: number);
+      MobileNumberServices.otpverfyimg(value.tojson(), context);
+      final id = value.id;
+      mobileId = id.toString();
+      print(id.toString());
+      print('nxfnvmnfbdfb');
+      print(mobileId);
       saveToSharedPrefMobilrOtp();
       Navigator.push(
         context,
@@ -36,6 +38,8 @@ class MobileOtpController extends ChangeNotifier {
     final sharedPrefrence = await SharedPreferences.getInstance();
     //save value
     sharedPrefrence.setString(
-        'mobilenumber', mobileNumberTextfield.text.trim());
+      'mobilenumber',
+      mobileNumberTextfield.text.trim(),
+    );
   }
 }

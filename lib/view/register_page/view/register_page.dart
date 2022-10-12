@@ -8,11 +8,12 @@ import 'package:turf_app/view/register_page/view/widget/bottom_area.dart';
 import 'package:turf_app/view/register_page/view/widget/textfield.dart';
 
 class RegisterPage extends StatelessWidget {
- const RegisterPage({super.key});
+  const RegisterPage({super.key});
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<RegisterController>(context,listen: false);
-    final loginController = Provider.of<LoginController>(context,listen: false);
+    final controller = Provider.of<SignupController>(context, listen: false);
+    final loginController =
+        Provider.of<LoginController>(context, listen: false);
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -51,27 +52,27 @@ class RegisterPage extends StatelessWidget {
                         fontWeight: FontWeight.w300,
                       ),
                     ),
-                    height20,
-                    TextFieldWidget(
-                      hint: "Name",
-                      validator: "",
-                      controller: controller.nameController,
-                      keybord: TextInputType.name,
-                      icon: Icons.person,
-                    ),
-                    height20,
-                    TextFieldWidget(
-                      hint: "Mobile Number",
-                      validator: "",
-                      controller: controller.phoneController,
-                      keybord: TextInputType.phone,
-                      icon: Icons.phone,
-                    ),
+                    // height20,
+                    // TextFieldWidget(
+                    //   hint: "Name",
+                    //   validator: "",
+                    //   controller: controller.nameController,
+                    //   keybord: TextInputType.name,
+                    //   icon: Icons.person,
+                    // ),
+                    // height20,
+                    // TextFieldWidget(
+                    //   hint: "Mobile Number",
+                    //   validator: "",
+                    //   controller: controller.phoneController,
+                    //   keybord: TextInputType.phone,
+                    //   icon: Icons.phone,
+                    // ),
                     height20,
                     TextFieldWidget(
                       hint: "Email",
                       validator: "",
-                      controller: loginController.emailController,
+                      controller: controller.emailController,
                       keybord: TextInputType.emailAddress,
                       icon: Icons.email,
                     ),
@@ -79,7 +80,7 @@ class RegisterPage extends StatelessWidget {
                     TextFieldWidgets(
                       hint: "Password",
                       validator: "",
-                      controller: loginController.passwordController,
+                      controller: controller.passwordController,
                       keybord: TextInputType.visiblePassword,
                       icon: Icons.password,
                       suffIcon: IconButton(
@@ -94,25 +95,25 @@ class RegisterPage extends StatelessWidget {
                                 : const Icon(Icons.visibility),
                       ),
                     ),
-                    height20,
-                    TextFieldWidgets(
-                      hint: "Conform",
-                      validator: "",
-                      controller: controller.conformController,
-                      keybord: TextInputType.visiblePassword,
-                      icon: Icons.password,
-                      suffIcon: IconButton(
-                        onPressed: () {
-                          Provider.of<LoginController>(context, listen: false)
-                              .isobscure();
-                        },
-                        icon:
-                            Provider.of<LoginController>(context, listen: true)
-                                    .obscure
-                                ? const Icon(Icons.visibility_off)
-                                : const Icon(Icons.visibility),
-                      ),
-                    ),
+                    // height20,
+                    // TextFieldWidgets(
+                    //   hint: "Conform",
+                    //   validator: "",
+                    //   controller: controller.conformController,
+                    //   keybord: TextInputType.visiblePassword,
+                    //   icon: Icons.password,
+                    //   suffIcon: IconButton(
+                    //     onPressed: () {
+                    //       Provider.of<LoginController>(context, listen: false)
+                    //           .isobscure();
+                    //     },
+                    //     icon:
+                    //         Provider.of<LoginController>(context, listen: true)
+                    //                 .obscure
+                    //             ? const Icon(Icons.visibility_off)
+                    //             : const Icon(Icons.visibility),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

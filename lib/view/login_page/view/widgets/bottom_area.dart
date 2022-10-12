@@ -31,7 +31,7 @@ class BottomContainer extends StatelessWidget {
           ElevatedButton(
             onPressed: (() {
               
-              controller.signin(context);
+              controller.loginUser(context);
               controller.emailController.clear();
               controller.passwordController.clear();
             }),
