@@ -16,8 +16,8 @@ class SignUpModel {
 }
 
 class SignUpRespoModel {
-  String id;
-  bool status;
+  String? id;
+  bool? status;
 
   SignUpRespoModel({
     required this.id,
@@ -25,6 +25,9 @@ class SignUpRespoModel {
   });
 
   factory SignUpRespoModel.fromJson(Map<String, dynamic> json) {
-    return SignUpRespoModel(id: json['id'], status: json['status']);
+    return SignUpRespoModel(
+      id: json['id'],
+      status: json['status'],
+    );
   }
 }

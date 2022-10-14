@@ -10,28 +10,43 @@ import 'package:turf_app/view/register_page/service/register_service.dart';
 class SignupController extends ChangeNotifier {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final nameController = TextEditingController();
+  final mobileController = TextEditingController();
+  final conformController = TextEditingController();
   SignUpRespoModel? signUpRespoModel;
 
   void createUser(context) async {
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
-    print('xfkmvnjzdnvn');
-    if (email.isEmpty || password.isEmpty) {
-      return;
-    } else {
-      SignUpModel value = SignUpModel(userMail: email, userPassword: password);
-      signUpRespoModel =
-          await SignupService.instance.signupUser(value, context);
-      if (signUpRespoModel!.status == true) {
-        log(signUpRespoModel!.status.toString());
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                const PinCodeVerificationScreen('amalpkdrv@gmail.com'),
-          ),
-        );
+    final conform = conformController.text.trim();
+    if (password == conform) {
+      print('xfkmvnjzdnvn');
+      if (email.isEmpty || password.isEmpty) {
+        return;
+      } else {
+        SignUpModel value =
+            SignUpModel(userMail: email, userPassword: password);
+        signUpRespoModel =
+            await SignupService.instance.signupUser(value, context);
+        if (signUpRespoModel!.status == true) {
+          log(signUpRespoModel!.status.toString());
+          clearData(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  const PinCodeVerificationScreen('amalpkdrv@gmail.com'),
+            ),
+          );
+        }
       }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Wrong Password'),
+          backgroundColor: Color.fromARGB(255, 97, 98, 97),
+        ),
+      );
     }
     saveToSharedPref();
   }
@@ -43,13 +58,20 @@ class SignupController extends ChangeNotifier {
     //save value
     sharedPrefrence.setString('email', emailController.text.trim());
     sharedPrefrence.setString('password', passwordController.text.trim());
+    sharedPrefrence.setString('name', nameController.text.trim());
+    sharedPrefrence.setString('mobile', mobileController.text.trim());
   }
 
   getSavedData(context) async {
     final sharedPrefrence = await SharedPreferences.getInstance();
     final savedEmailValue = sharedPrefrence.getString('email');
     final savedPasswordValue = sharedPrefrence.getString('password');
-    if (savedEmailValue != null || savedPasswordValue != null) {
+    final savedNameValue = sharedPrefrence.getString('name');
+    final savedMobileValue = sharedPrefrence.getString('mobile');
+    if (savedEmailValue != null ||
+        savedPasswordValue != null ||
+        savedNameValue != null ||
+        savedMobileValue != null) {
       // Navigator.push(
       // context, MaterialPageRoute(builder: (context) => Homepage())
       // );
@@ -89,9 +111,9 @@ class SignupController extends ChangeNotifier {
   }
 
   clearData(context) {
-    // nameController.clear();
-    // phoneController.clear();
-    // conformController.clear();
+    nameController.clear();
+    mobileController.clear();
+    conformController.clear();
     emailController.clear();
     passwordController.clear();
   }

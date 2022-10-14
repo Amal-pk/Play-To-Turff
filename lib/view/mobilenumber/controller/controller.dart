@@ -8,7 +8,7 @@ import 'package:turf_app/view/mobilenumber/service/service.dart';
 
 class MobileOtpController extends ChangeNotifier {
   final TextEditingController mobileNumberTextfield = TextEditingController();
-  String? mobileId;
+  MobileNumberRespoModel? mobileId;
   loginMobileOtp(context) {
     final number = mobileNumberTextfield.text.trim();
 
@@ -16,12 +16,8 @@ class MobileOtpController extends ChangeNotifier {
       const Text('empty qurie');
     } else {
       MobileNumberRespoModel value = MobileNumberRespoModel(number: number);
-      MobileNumberServices.otpverfyimg(value.tojson(), context);
-      final id = value.id;
-      mobileId = id.toString();
-      print(id.toString());
-      print('nxfnvmnfbdfb');
-      print(mobileId);
+      MobileNumberServices.instance.otpverfyimg(value, context);
+
       saveToSharedPrefMobilrOtp();
       Navigator.push(
         context,

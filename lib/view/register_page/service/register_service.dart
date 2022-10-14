@@ -7,7 +7,7 @@ class SignupService {
   SignupService._internal();
   static SignupService instance = SignupService._internal();
   factory SignupService() {
-    return instance;
+    return instance; 
   }
 
   Future<SignUpRespoModel?> signupUser(SignUpModel value, context) async {

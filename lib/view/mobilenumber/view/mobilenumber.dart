@@ -56,27 +56,6 @@ class MobileNumber extends StatelessWidget {
                     keybord: TextInputType.phone,
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: (() {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: ((context) => RegisterPage()),
-                          ),
-                        );
-                      }),
-                      child: const Text(
-                        "Login With Email",
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 ElevatedButton(
                   onPressed: (() {
                     controller.loginMobileOtp(context);

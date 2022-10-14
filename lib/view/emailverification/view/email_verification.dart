@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/emailverification/view_controller/controller.dart';
+import 'package:turf_app/view/register_page/view_controller/register_controller.dart';
 
 class PinCodeVerificationScreen extends StatelessWidget {
   final String email;
@@ -13,6 +14,9 @@ class PinCodeVerificationScreen extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     final emailVerificationController =
         Provider.of<EmailVerificationController>(context);
+    final signupController =
+        Provider.of<SignupController>(context, listen: false);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
@@ -36,9 +40,9 @@ class PinCodeVerificationScreen extends StatelessWidget {
               height: 8.0,
             ),
             RichText(
-              text: const TextSpan(
+              text: TextSpan(
                 children: [
-                  TextSpan(
+                  const TextSpan(
                     text:
                         'Please enter the verification code that we have sent to your email ',
                     style: TextStyle(
@@ -49,8 +53,8 @@ class PinCodeVerificationScreen extends StatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text: 'amalpkdrv@gmail.com ',
-                    style: TextStyle(
+                    text: signupController.emailController.text.trim(),
+                    style: const TextStyle(
                       fontSize: 14.0,
                       color: Colors.green,
                       fontWeight: FontWeight.w400,

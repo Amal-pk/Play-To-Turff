@@ -52,22 +52,22 @@ class RegisterPage extends StatelessWidget {
                         fontWeight: FontWeight.w300,
                       ),
                     ),
-                    // height20,
-                    // TextFieldWidget(
-                    //   hint: "Name",
-                    //   validator: "",
-                    //   controller: controller.nameController,
-                    //   keybord: TextInputType.name,
-                    //   icon: Icons.person,
-                    // ),
-                    // height20,
-                    // TextFieldWidget(
-                    //   hint: "Mobile Number",
-                    //   validator: "",
-                    //   controller: controller.phoneController,
-                    //   keybord: TextInputType.phone,
-                    //   icon: Icons.phone,
-                    // ),
+                    height20,
+                    TextFieldWidget(
+                      hint: "Name",
+                      validator: "",
+                      controller: controller.nameController,
+                      keybord: TextInputType.name,
+                      icon: Icons.person,
+                    ),
+                    height20,
+                    TextFieldWidget(
+                      hint: "Mobile Number",
+                      validator: "",
+                      controller: controller.mobileController,
+                      keybord: TextInputType.phone,
+                      icon: Icons.phone,
+                    ),
                     height20,
                     TextFieldWidget(
                       hint: "Email",
@@ -95,25 +95,25 @@ class RegisterPage extends StatelessWidget {
                                 : const Icon(Icons.visibility),
                       ),
                     ),
-                    // height20,
-                    // TextFieldWidgets(
-                    //   hint: "Conform",
-                    //   validator: "",
-                    //   controller: controller.conformController,
-                    //   keybord: TextInputType.visiblePassword,
-                    //   icon: Icons.password,
-                    //   suffIcon: IconButton(
-                    //     onPressed: () {
-                    //       Provider.of<LoginController>(context, listen: false)
-                    //           .isobscure();
-                    //     },
-                    //     icon:
-                    //         Provider.of<LoginController>(context, listen: true)
-                    //                 .obscure
-                    //             ? const Icon(Icons.visibility_off)
-                    //             : const Icon(Icons.visibility),
-                    //   ),
-                    // ),
+                    height20,
+                    TextFieldWidgets(
+                      hint: "Conform",
+                      validator: "",
+                      controller: controller.conformController,
+                      keybord: TextInputType.visiblePassword,
+                      icon: Icons.password,
+                      suffIcon: IconButton(
+                        onPressed: () {
+                          Provider.of<LoginController>(context, listen: false)
+                              .isobscure();
+                        },
+                        icon:
+                            Provider.of<LoginController>(context, listen: true)
+                                    .obscure
+                                ? const Icon(Icons.visibility_off)
+                                : const Icon(Icons.visibility),
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/core.dart';
-import 'package:turf_app/view/emailverification/service/sevices.dart';
-import 'package:turf_app/view/emailverification/view_controller/controller.dart';
-import 'package:turf_app/view/homepage/view/home_page.dart';
-import 'package:turf_app/view/login_page/view_controller/login_controller.dart';
-import 'package:turf_app/view/mobile_verification/view/mobileverification.dart';
 import 'package:turf_app/view/register_page/view_controller/register_controller.dart';
 
 class BottomContainerOnRegister extends StatelessWidget {
@@ -14,8 +9,6 @@ class BottomContainerOnRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<SignupController>(context, listen: false);
-    final logincontroller =
-        Provider.of<LoginController>(context, listen: false);
 
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
@@ -37,7 +30,6 @@ class BottomContainerOnRegister extends StatelessWidget {
             onPressed: (() {
               controller.createUser(context);
 
-              controller.clearData(context);
             }),
             style: ButtonStyle(
               elevation: MaterialStateProperty.all(0),

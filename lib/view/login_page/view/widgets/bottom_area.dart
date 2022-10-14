@@ -16,7 +16,7 @@ class BottomContainer extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Container(
       width: width,
-      height: height / 2.5,
+      height: height / 2.4,
       decoration: const BoxDecoration(
         color: Colors.green,
         borderRadius: BorderRadius.only(
@@ -26,11 +26,11 @@ class BottomContainer extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          height50,
+          height20,
           ElevatedButton(
             onPressed: (() {
-              
               controller.loginUser(context);
               controller.emailController.clear();
               controller.passwordController.clear();
@@ -49,7 +49,39 @@ class BottomContainer extends StatelessWidget {
               ),
             ),
           ),
-          height20,
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => MobileNumber(),
+                ),
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              height: height / 16,
+              width: width / 1.8,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: FittedBox(
+                child: Row(
+                  children: const [
+                    Icon(Icons.mobile_friendly),
+                    width10,
+                    Text(
+                      "Continue with Mobile",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
           Container(
             padding: const EdgeInsets.all(8),
             height: height / 16,
@@ -79,7 +111,6 @@ class BottomContainer extends StatelessWidget {
               ),
             ),
           ),
-          height20,
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
@@ -124,13 +155,12 @@ class BottomContainer extends StatelessWidget {
               ),
               TextButton(
                 onPressed: (() {
-                  Navigator.of(context).push(
+                  Navigator.push(
+                    context,
                     MaterialPageRoute(
-                      builder: (context) => MobileNumber(),
+                      builder: ((context) => const RegisterPage()),
                     ),
                   );
-                  controller.emailController.clear();
-                  controller.passwordController.clear();
                 }),
                 child: const Text(
                   "Sign up",

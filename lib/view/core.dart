@@ -6,8 +6,8 @@ const height20 = SizedBox(
 const height50 = SizedBox(
   height: 50,
 );
-const width20 = SizedBox(
-  width: 20,
+const width10 = SizedBox(
+  width: 10,
 );
 
 const baseUrl = 'https://fauxspot.herokuapp.com/';
@@ -16,3 +16,5 @@ const emailOTP = 'account/verify-email-otp';
 const mobileOTP = 'account/verify-number-otp';
 const registerUrl = 'account/signup-email';
 const mobileUrl = 'account/login-number';
+// 'https://fauxspot.herokuapp.com/'
+// https://play-to-turf.herokuapp.com/

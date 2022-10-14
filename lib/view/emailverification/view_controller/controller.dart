@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:turf_app/view/emailverification/model/model.dart';
 import 'package:turf_app/view/emailverification/service/sevices.dart';
 import 'package:turf_app/view/homepage/view/home_page.dart';
-import 'package:turf_app/view/register_page/model/register_model.dart';
-import 'package:turf_app/view/register_page/view_controller/register_controller.dart';
 import 'package:turf_app/view/register_page/view_controller/register_controller.dart';
 
 class EmailVerificationController extends ChangeNotifier {
@@ -30,7 +28,7 @@ class EmailVerificationController extends ChangeNotifier {
 
       if (result.status != false) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(result.message!),
