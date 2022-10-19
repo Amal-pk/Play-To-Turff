@@ -9,6 +9,9 @@ const height50 = SizedBox(
 const width10 = SizedBox(
   width: 10,
 );
+const height10 = SizedBox(
+  height: 10,
+);
 
 const baseUrl = 'https://fauxspot.herokuapp.com/';
 const loginUrl = 'account/login-email';
