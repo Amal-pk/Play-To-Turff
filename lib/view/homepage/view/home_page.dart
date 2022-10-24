@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:turf_app/view/core.dart';
-import 'package:turf_app/view/homepage/controller/homapage_controller.dart';
 import 'package:turf_app/view/homepage/controller/location_controller.dart';
 import 'package:turf_app/view/homepage/view/widget/gridview.dart';
 
@@ -34,7 +32,10 @@ class HomePage extends StatelessWidget {
                         Obx(
                           () => Text(
                               ' ${locationController.currentAddress.value}',
-                              style: const TextStyle(fontSize: 18)),
+                              style: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                              )),
                         ),
                       ],
                     ),
@@ -117,7 +118,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                const GridviewPage()
+                GridviewPage()
               ],
             ),
           ),

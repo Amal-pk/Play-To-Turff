@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:turf_app/view/splash_screen/splash_controller.dart';
+import 'package:turf_app/view/splash_screen/controller/splash_controller.dart';
 
 class SplashScreen extends GetView<SplashScreenController> {
   SplashScreen({super.key});

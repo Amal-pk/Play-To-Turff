@@ -1,4 +1,5 @@
 import 'package:turf_app/view/homepage/model/nearbymodel/turf_catogery_model.dart';
+import 'package:turf_app/view/homepage/model/nearbymodel/turf_price.dart';
 import 'package:turf_app/view/homepage/model/nearbymodel/turfaminities_model.dart';
 import 'package:turf_app/view/homepage/model/nearbymodel/turfimage_model.dart';
 import 'package:turf_app/view/homepage/model/nearbymodel/turfinfo_model.dart';
@@ -7,6 +8,7 @@ import 'package:turf_app/view/homepage/model/nearbymodel/turftype_model.dart';
 
 class Datum {
   Datum({
+    this.turfCategory,
     this.turfType,
     this.turfInfo,
     this.turfAmenities,
@@ -16,12 +18,14 @@ class Datum {
     this.turfCreatorId,
     this.turfName,
     this.turfPlace,
-    this.turfMuncipality,
+    this.turfMunicipality,
     this.turfDistrict,
-    this.turfCatogery,
+    this.turfPrice,
+    this.turfLogo,
     this.v,
   });
 
+  TurfCategory? turfCategory;
   TurfType? turfType;
   TurfInfo? turfInfo;
   TurfAmenities? turfAmenities;
@@ -31,12 +35,14 @@ class Datum {
   String? turfCreatorId;
   String? turfName;
   String? turfPlace;
-  String? turfMuncipality;
+  String? turfMunicipality;
   String? turfDistrict;
-  TurfCatogery? turfCatogery;
+  TurfPrice? turfPrice;
+  String? turfLogo;
   int? v;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+        turfCategory: TurfCategory.fromJson(json["turf_category"]),
         turfType: TurfType.fromJson(json["turf_type"]),
         turfInfo: TurfInfo.fromJson(json["turf_info"]),
         turfAmenities: TurfAmenities.fromJson(json["turf_amenities"]),
@@ -46,25 +52,10 @@ class Datum {
         turfCreatorId: json["turf_creator_id"],
         turfName: json["turf_name"],
         turfPlace: json["turf_place"],
-        turfMuncipality: json["turf_muncipality"],
+        turfMunicipality: json["turf_municipality"],
         turfDistrict: json["turf_district"],
-        turfCatogery: TurfCatogery.fromJson(json["turf_catogery"]),
+        turfPrice: TurfPrice.fromJson(json["turf_price"]),
+        turfLogo: json["turf_logo"],
         v: json["__v"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "turf_type": turfType!.toJson(),
-        "turf_info": turfInfo!.toJson(),
-        "turf_amenities": turfAmenities!.toJson(),
-        "turf_images": turfImages!.toJson(),
-        "turf_time": turfTime!.toJson(),
-        "_id": id,
-        "turf_creator_id": turfCreatorId,
-        "turf_name": turfName,
-        "turf_place": turfPlace,
-        "turf_muncipality": turfMuncipality,
-        "turf_district": turfDistrict,
-        "turf_catogery": turfCatogery!.toJson(),
-        "__v": v,
-      };
 }

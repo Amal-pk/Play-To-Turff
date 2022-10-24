@@ -16,8 +16,9 @@ class LoginService {
           await Dio().post(baseUrl + loginUrl, data: value.toJoson());
 
       if (response.statusCode == 200) {
-        print(response.data);  ScaffoldMessenger.of(context).showSnackBar(
-           SnackBar(
+        // print(response.data);
+          ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
             content: Text("Login successfully"),
             backgroundColor: Color.fromARGB(255, 97, 98, 97),
           ),

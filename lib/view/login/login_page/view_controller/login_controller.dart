@@ -22,7 +22,7 @@ class LoginController extends ChangeNotifier {
 
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
-
+ 
     if (email.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

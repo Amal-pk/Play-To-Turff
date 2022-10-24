@@ -6,34 +6,35 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 
 class LocationController extends GetxController {
+  // final HomePageController controller = Get.put(HomePageController());
   dynamic currentPosition = ''.obs;
-
   Rx<String> currentAddress = ''.obs;
-
+  String district = '';
   Future<bool> _handleLocationPermission() async {
     bool serviceEnabled;
     LocationPermission permission;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      //     content: Text(
-      //         'Location services are disabled. Please enable the services')));
+      // ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+          content: Text(
+              'Location services are disabled. Please enable the services'));
       return false;
     }
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        // ScaffoldMessenger.of(context).showSnackBar(
-        //     const SnackBar(content: Text('Location permissions are denied')));
+        const SnackBar(content: Text('Location permissions are denied'));
         return false;
       }
     }
     if (permission == LocationPermission.deniedForever) {
-      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      // content: Text(
-      //     'Location permissions are permanently denied, we cannot request permissions.')));
+      // ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+          content: Text(
+              'Location permissions are permanently denied, we cannot request permissions.'));
       return false;
     }
     return true;
@@ -48,7 +49,7 @@ class LocationController extends GetxController {
       currentPosition = position;
       _getAddressFromLatLng(currentPosition);
     }).catchError((e) {
-      debugPrint(e);
+      log(e.toString());
     });
   }
 
@@ -60,8 +61,10 @@ class LocationController extends GetxController {
       Placemark place = placemarks[0];
       currentAddress.value =
           '${place.subLocality}, ${place.subAdministrativeArea}';
+      district = place.subAdministrativeArea!.toString();
+      // log(place.subAdministrativeArea.toString());
     }).catchError((e) {
-      debugPrint(e);
+      log(e.toString());
     });
   }
 }

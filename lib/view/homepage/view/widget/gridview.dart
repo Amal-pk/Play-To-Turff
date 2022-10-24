@@ -1,44 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:turf_app/view/core.dart';
+import 'package:turf_app/view/details/view/details.dart';
+import 'package:turf_app/view/homepage/controller/homapage_controller.dart';
+import 'package:turf_app/view/homepage/controller/location_controller.dart';
 
 class GridviewPage extends StatelessWidget {
-  const GridviewPage({super.key});
-
+  GridviewPage({super.key});
+  final LocationController locationController = Get.put(LocationController());
+  final HomePageController nearbyController = Get.put(HomePageController());
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: GridView.builder(
+    // final nearbyController =
+    // Provider.of<HomePageController>(context, listen: false);
+    return GetBuilder<HomePageController>(builder: (context) {
+      return GridView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
-        itemCount: 8,
+        itemCount: nearbyController.near.length,
         itemBuilder: (BuildContext context, int index) {
-          return Container(
-            margin: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
+          final turfss = nearbyController.near[index];
+          return GestureDetector(
+            onTap: () => Get.to(
+              () => Details(
+                details: turfss,
+              ),
             ),
-            child: Column(
-              children: [
-                Image.asset("asset/image/istockphoto-519558145-170667a.jpg"),
-                height10,
-                const Text(
-                  'Name',
-                  style: TextStyle(
-                    fontSize: 20,
+            child: Container(
+              margin: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey[300],
+              ),
+              child: Column(
+                children: [
+                  Image(
+                    height: 80,
+                    width: double.infinity,
+                    image: NetworkImage(
+                      turfss.turfImages!.turfImages1!,
+                    ),
+                    fit: BoxFit.cover,
                   ),
-                ),
-                height10,
-                Text("Location")
-              ],
+                  height10,
+                  Text(
+                    turfss.turfName!,
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                  height10,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      Text(turfss.turfInfo!.turfRating!.toString()),
+                    ],
+                  ),
+                  Text(turfss.turfPlace!)
+                ],
+              ),
             ),
           );
         },
-      ),
-    );
+      );
+    });
   }
 }
 //  

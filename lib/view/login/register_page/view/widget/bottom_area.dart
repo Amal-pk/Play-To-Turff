@@ -45,40 +45,6 @@ class BottomContainerOnRegister extends StatelessWidget {
             ),
           ),
           height20,
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Expanded(
-                  child: Divider(
-                    thickness: 1,
-                    color: Colors.black,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 3,
-                    right: 3,
-                  ),
-                  child: Text(
-                    "OR",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Divider(
-                    thickness: 1,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          height20,
           GestureDetector(
             onTap: (() {
               // controller.createUser(context);

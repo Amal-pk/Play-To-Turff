@@ -1,16 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:turf_app/view/bottom_navigation/view/bottom_navigation.dart';
+import 'package:turf_app/view/homepage/controller/homapage_controller.dart';
 import 'package:turf_app/view/homepage/controller/location_controller.dart';
-import 'package:turf_app/view/homepage/view/home_page.dart';
 import 'package:turf_app/view/login/login_page/view/login_page.dart';
 
 class SplashScreenController extends GetxController {
   final locationController = Get.put(LocationController());
+  final HomePageController nearbyController = Get.put(HomePageController());
+
   @override
   void onInit() {
-    checkUserLoggedIn();
+    nearbyController.nearbyTruff();
     locationController.getCurrentPosition();
+    checkUserLoggedIn();
     super.onInit();
   }
 
@@ -19,10 +22,11 @@ class SplashScreenController extends GetxController {
     final checked = pref.getBool('userloggedin');
     if (checked == false || checked == null) {
       await Future.delayed(const Duration(seconds: 2));
-      Get.to(() => const LoginPage());
+      Get.off(() => const LoginPage());
     } else {
       await Future.delayed(const Duration(seconds: 2));
-      Get.to(() => HomePage());
+      Get.off(() => BottomNavigation());
     }
   }
 }
+// BottomNavigation()

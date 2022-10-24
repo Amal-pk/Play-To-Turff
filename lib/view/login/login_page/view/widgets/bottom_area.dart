@@ -52,10 +52,10 @@ class BottomContainer extends StatelessWidget {
             ),
             child: Text(
               controller.isLoading == true ? 'loading' : "Sign In",
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 4, 73, 7)),
             ),
           ),
           GestureDetector(
@@ -89,68 +89,6 @@ class BottomContainer extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-          ),
-          // Container(
-          //   padding: const EdgeInsets.all(8),
-          //   height: height / 16,
-          //   width: width / 1.8,
-          //   decoration: BoxDecoration(
-          //     color: Colors.white,
-          //     borderRadius: BorderRadius.circular(30),
-          //   ),
-          //   child: FittedBox(
-          //     child: Row(
-          //       children: [
-          //         Image(
-          //           image: const AssetImage(
-          //             "asset/image/google.png",
-          //           ),
-          //           height: height / 32,
-          //         ),
-          //         // width20,
-          //         const Text(
-          //           "Continue with google",
-          //           style: TextStyle(
-          //             fontSize: 15,
-          //             color: Colors.black,
-          //           ),
-          //         )
-          //       ],
-          //     ),
-          //   ),
-          // ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Expanded(
-                  child: Divider(
-                    thickness: 1,
-                    color: Colors.black,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 3,
-                    right: 3,
-                  ),
-                  child: Text(
-                    "OR",
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Divider(
-                    thickness: 1,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
             ),
           ),
           Row(
