@@ -27,24 +27,27 @@ class GridviewPage extends StatelessWidget {
             onTap: () => Get.to(
               () => Details(
                 details: turfss,
-              ),
+              ), 
             ),
             child: Container(
               margin: const EdgeInsets.all(8),
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(20),
                 color: Colors.grey[300],
               ),
               child: Column(
                 children: [
-                  Image(
-                    height: 80,
-                    width: double.infinity,
-                    image: NetworkImage(
-                      turfss.turfImages!.turfImages1!,
+                  CircleAvatar(
+                    radius: 50,
+                    child: Image(
+                      // height: 80,
+                      width: double.infinity,
+                      image: NetworkImage(
+                        turfss.turfLogo!,
+                      ),
+                      fit: BoxFit.cover,
                     ),
-                    fit: BoxFit.cover,
                   ),
                   height10,
                   Text(
@@ -54,17 +57,37 @@ class GridviewPage extends StatelessWidget {
                     ),
                   ),
                   height10,
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Icon(
-                        Icons.star,
-                        color: Colors.amber,
-                      ),
-                      Text(turfss.turfInfo!.turfRating!.toString()),
-                    ],
+                  FittedBox(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.location_on,
+                              color: Colors.black,
+                              size: 16,
+                            ),
+                            Text(
+                              turfss.turfPlace!,
+                            ),
+                          ],
+                        ),
+                        width10,
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            Text(
+                              turfss.turfInfo!.turfRating!.toString(),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  Text(turfss.turfPlace!)
                 ],
               ),
             ),

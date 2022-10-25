@@ -20,5 +20,6 @@ const mobileOTP = 'account/verify-number-otp';
 const registerUrl = 'account/signup-email';
 const mobileUrl = 'account/login-number';
 const nearbyUrl = 'user/nearest-turf/';
+const allTurfUrl = 'user/all-turf';
 // 'https://fauxspot.herokuapp.com/'
 // https://play-to-turf.herokuapp.com/

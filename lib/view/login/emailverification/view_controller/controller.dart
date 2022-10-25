@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:turf_app/view/bottom_navigation/view/bottom_navigation.dart';
 import 'package:turf_app/view/login/emailverification/model/model.dart';
 import 'package:turf_app/view/login/emailverification/service/sevices.dart';
-import 'package:turf_app/view/homepage/view/home_page.dart';
 import 'package:turf_app/view/login/register_page/view_controller/register_controller.dart';
 
 class EmailVerificationController extends ChangeNotifier {
@@ -30,7 +30,7 @@ class EmailVerificationController extends ChangeNotifier {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePage(),
+            builder: (context) => BottomNavigation(),
           ),
         );
       } else {

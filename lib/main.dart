@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:turf_app/view/details/controller/details_controller.dart';
 import 'package:turf_app/view/login/emailverification/view_controller/controller.dart';
 import 'package:turf_app/view/homepage/controller/homapage_controller.dart';
 import 'package:turf_app/view/login/login_page/view_controller/login_controller.dart';
 import 'package:turf_app/view/login/mobile_verification/controller/mobileveri_controller.dart';
 import 'package:turf_app/view/login/mobilenumber/controller/controller.dart';
 import 'package:turf_app/view/login/register_page/view_controller/register_controller.dart';
+import 'package:turf_app/view/sopt/controller/sopt_controller.dart';
 import 'package:turf_app/view/splash_screen/veiw/splash_screen.dart';
 
 void main() {
@@ -38,9 +40,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: ((context) => MobileOtpController()),
         ),
-        // ChangeNotifierProvider(
-        //   create: ((context) => HomePageController()),
-        // ),
+        ChangeNotifierProvider(
+          create: ((context) => DetailsController()),
+        ),
+        ChangeNotifierProvider(
+          create: ((context) => SoptController()),
+        ),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

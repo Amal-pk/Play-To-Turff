@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:turf_app/view/bottom_navigation/view/bottom_navigation.dart';
 import 'package:turf_app/view/homepage/view/home_page.dart';
 import 'package:turf_app/view/login/login_page/model/login_model.dart';
 import 'package:turf_app/view/login/login_page/service/login_service.dart';
@@ -22,7 +23,7 @@ class LoginController extends ChangeNotifier {
 
     final email = emailController.text.trim();
     final password = passwordController.text.trim();
- 
+
     if (email.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -42,7 +43,7 @@ class LoginController extends ChangeNotifier {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => HomePage(),
+            builder: (context) => BottomNavigation(),
           ),
         );
         saveUserLoggedIn();

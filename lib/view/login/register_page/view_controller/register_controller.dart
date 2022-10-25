@@ -70,7 +70,7 @@ class SignupController extends ChangeNotifier {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const LoginPage(),
+          builder: (context) => const LoginPage(), 
         ),
       );
     }

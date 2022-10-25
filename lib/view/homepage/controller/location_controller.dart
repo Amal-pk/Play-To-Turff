@@ -9,7 +9,7 @@ class LocationController extends GetxController {
   // final HomePageController controller = Get.put(HomePageController());
   dynamic currentPosition = ''.obs;
   Rx<String> currentAddress = ''.obs;
-  String district = '';
+  late String district = '';
   Future<bool> _handleLocationPermission() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -37,6 +37,7 @@ class LocationController extends GetxController {
               'Location permissions are permanently denied, we cannot request permissions.'));
       return false;
     }
+    update();
     return true;
   }
 
@@ -51,6 +52,7 @@ class LocationController extends GetxController {
     }).catchError((e) {
       log(e.toString());
     });
+    update();
   }
 
   Future<void> _getAddressFromLatLng(Position position) async {
@@ -66,5 +68,6 @@ class LocationController extends GetxController {
     }).catchError((e) {
       log(e.toString());
     });
+    update();
   }
 }

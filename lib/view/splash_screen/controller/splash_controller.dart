@@ -19,8 +19,8 @@ class SplashScreenController extends GetxController {
 
   checkUserLoggedIn() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    final checked = pref.getBool('userloggedin');
-    if (checked == false || checked == null) {
+    final checked = pref.getString('Token');
+    if (checked == null || checked.isEmpty) {
       await Future.delayed(const Duration(seconds: 2));
       Get.off(() => const LoginPage());
     } else {
