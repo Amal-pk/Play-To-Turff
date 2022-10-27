@@ -12,8 +12,7 @@ class HomePageController extends GetxController {
   final LocationController controller = Get.put(LocationController());
 
   List<Datum> near = [];
-  // String district = '';
-
+  RxBool isSearchClick = false.obs;
   nearbyTruff() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     final token = sp.getString("Token");

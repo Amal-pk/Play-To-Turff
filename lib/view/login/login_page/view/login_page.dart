@@ -17,88 +17,90 @@ class LoginPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
-          child: Form(
-            key: controller.formkey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: height / 8.3,
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 16.0),
-                  child: Text(
-                    'HELLO',
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.black,
-                    ),
+        body: Consumer<LoginController>(builder: (context, value, _) {
+          return SingleChildScrollView(
+            child: Form(
+              key: controller.formkey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: height / 8.3,
                   ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(left: 16.0),
-                  child: Text(
-                    'Singin On Your account',
-                    style: TextStyle(
-                      fontSize: 18,
-                      letterSpacing: 0,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                height50,
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: TextFieldWidget(
-                    controller: controller.emailController,
-                    hint: 'Email',
-                    icon: Icons.email,
-                    validator: '',
-                    keybord: TextInputType.emailAddress,
-                  ),
-                ),
-                height20,
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0, right: 16),
-                  child: TextFieldWidgets(
-                    controller: controller.passwordController,
-                    hint: 'Password',
-                    icon: Icons.password_sharp,
-                    validator: '',
-                    keybord: TextInputType.visiblePassword,
-                    suffIcon: IconButton(
-                      onPressed: () {
-                        controller.isobscure();
-                      },
-                      icon: controller.obscure
-                          ? const Icon(Icons.visibility_off)
-                          : const Icon(Icons.visibility),
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: (() {}),
-                      child: const Text(
-                        "Forgot Password",
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 16.0),
+                    child: Text(
+                      'HELLO',
+                      style: TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black,
                       ),
                     ),
-                  ],
-                ),
-                height50,
-                const BottomContainer()
-              ],
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 16.0),
+                    child: Text(
+                      'Singin On Your account',
+                      style: TextStyle(
+                        fontSize: 18,
+                        letterSpacing: 0,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                  height50,
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextFieldWidget(
+                      controller: controller.emailController,
+                      hint: 'Email',
+                      icon: Icons.email,
+                      validator: '',
+                      keybord: TextInputType.emailAddress,
+                    ),
+                  ),
+                  height20,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0, right: 16),
+                    child: TextFieldWidgets(
+                      controller: controller.passwordController,
+                      hint: 'Password',
+                      icon: Icons.password_sharp,
+                      validator: '',
+                      keybord: TextInputType.visiblePassword,
+                      suffIcon: IconButton(
+                        onPressed: () {
+                          controller.isobscure();
+                        },
+                        icon: controller.obscure
+                            ? const Icon(Icons.visibility_off)
+                            : const Icon(Icons.visibility),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: (() {}),
+                        child: const Text(
+                          "Forgot Password",
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  height50,
+                  const BottomContainer()
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        }),
       ),
     );
   }

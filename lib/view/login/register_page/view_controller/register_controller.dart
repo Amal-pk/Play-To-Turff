@@ -12,6 +12,7 @@ class SignupController extends ChangeNotifier {
   final passwordController = TextEditingController();
   final conformController = TextEditingController();
   SignUpRespoModel? signUpRespoModel;
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   void createUser(context) async {
     final email = emailController.text.trim();
@@ -70,7 +71,7 @@ class SignupController extends ChangeNotifier {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const LoginPage(), 
+          builder: (context) => const LoginPage(),
         ),
       );
     }

@@ -11,6 +11,8 @@ import 'package:turf_app/view/login/register_page/view_controller/register_contr
 import 'package:turf_app/view/sopt/controller/sopt_controller.dart';
 import 'package:turf_app/view/splash_screen/veiw/splash_screen.dart';
 
+import 'view/bottom_navigation/controller/bottomnavigation_controller.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -45,6 +47,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: ((context) => SoptController()),
+        ),
+        ChangeNotifierProvider(
+          create: ((context) => BottomNavigationBarController()),
         ),
       ],
       child: GetMaterialApp(

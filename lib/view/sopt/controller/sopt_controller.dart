@@ -8,6 +8,7 @@ import 'package:turf_app/view/sopt/serivce/sopt_service.dart';
 
 class SoptController extends ChangeNotifier {
   List<Datum> allTruff = [];
+  List<Datum> searchItems = [];
 
   oninit() async {
     await allTurff();
@@ -16,12 +17,31 @@ class SoptController extends ChangeNotifier {
   allTurff() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     final token = sp.getString("Token");
-    log(token.toString());
+    // log(token.toString());
 
     HomeResponse? allTruffRespo = await AllTurfService.instance.allTurf(token!);
     if (allTruffRespo != null && allTruffRespo.status == true) {
       allTruff.clear();
       allTruff.addAll(allTruffRespo.data!);
     }
+    notifyListeners();
+  }
+
+  void search(String data) {
+    log(data);
+    List<Datum> searchingItem = [];
+    if (data.isEmpty) {
+      searchingItem = allTruff;
+    } else {
+      searchingItem = allTruff
+          .where(
+            (element) =>
+                element.turfName!.toLowerCase().contains(data.toLowerCase()),
+          )
+          .toList();
+    }
+    searchItems = searchingItem;
+    log(searchItems.toString());
+    notifyListeners();
   }
 }

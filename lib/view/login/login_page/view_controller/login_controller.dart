@@ -61,6 +61,10 @@ class LoginController extends ChangeNotifier {
     pref.setBool('userloggedin', true);
   }
 
+  isloading() {
+    isLoading = !isLoading;
+  }
+
   isobscure() {
     obscure = !obscure;
     notifyListeners();

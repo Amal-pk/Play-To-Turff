@@ -27,14 +27,20 @@ class GridviewPage extends StatelessWidget {
             onTap: () => Get.to(
               () => Details(
                 details: turfss,
-              ), 
+              ),
             ),
             child: Container(
               margin: const EdgeInsets.all(8),
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Colors.grey[300],
+                color: Colors.white ,
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 3,
+                  )
+                ],
               ),
               child: Column(
                 children: [
