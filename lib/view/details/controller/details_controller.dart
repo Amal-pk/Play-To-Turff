@@ -7,14 +7,21 @@ import 'package:turf_app/view/booking/view/booking_page.dart';
 class DetailsController extends ChangeNotifier {
   bool priceOnTap = false;
 
-  void booking() {
-    Get.to(() => const BookingPage());
-    notifyListeners();
-  }
+  bool allTurffView = false;
+
+  // void booking() {
+  //   notifyListeners();
+  // }
 
   void priceOntap() {
     priceOnTap = !priceOnTap;
     log(priceOnTap.toString());
+    notifyListeners();
+  }
+
+  void allTurfView() {
+    allTurffView = !allTurffView;
+    log(allTurffView.toString());
     notifyListeners();
   }
 
@@ -25,4 +32,3 @@ class DetailsController extends ChangeNotifier {
     super.dispose();
   }
 }
-

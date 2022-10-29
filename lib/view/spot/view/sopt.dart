@@ -5,8 +5,8 @@ import 'package:turf_app/view/core.dart';
 import 'package:turf_app/view/homepage/controller/homapage_controller.dart';
 import 'package:turf_app/view/homepage/controller/location_controller.dart';
 import 'package:turf_app/view/homepage/view/widget/sreach_gridview.dart';
-import 'package:turf_app/view/sopt/controller/sopt_controller.dart';
-import 'package:turf_app/view/sopt/view/all_turff_display.dart';
+import 'package:turf_app/view/spot/view/all_turff_display.dart';
+import 'package:turf_app/view/spot/controller/sopt_controller.dart';
 
 class Spot extends StatelessWidget {
   Spot({super.key});

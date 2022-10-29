@@ -13,7 +13,10 @@ class HomePageController extends GetxController {
 
   List<Datum> near = [];
   RxBool isSearchClick = false.obs;
+  RxBool isLoading = false.obs;
+
   nearbyTruff() async {
+    isLoading.value = true;
     SharedPreferences sp = await SharedPreferences.getInstance();
     final token = sp.getString("Token");
     log(token.toString());
@@ -26,6 +29,7 @@ class HomePageController extends GetxController {
       near.addAll(nearbyResponse.data!);
     }
     update();
+    isLoading.value = false;
   }
 
   logOut() async {

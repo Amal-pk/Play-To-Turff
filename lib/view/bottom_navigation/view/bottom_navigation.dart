@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:turf_app/view/bottom_navigation/controller/bottomnavigation_controller.dart';
 import 'package:turf_app/view/homepage/view/home_page.dart';
 import 'package:turf_app/view/profile/profile.dart';
-import 'package:turf_app/view/sopt/view/sopt.dart';
+import 'package:turf_app/view/spot/view/sopt.dart';
 
 class BottomNavigation extends StatelessWidget {
   BottomNavigation({super.key});

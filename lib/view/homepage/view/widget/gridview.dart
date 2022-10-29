@@ -11,94 +11,111 @@ class GridviewPage extends StatelessWidget {
   final HomePageController nearbyController = Get.put(HomePageController());
   @override
   Widget build(BuildContext context) {
-    // final nearbyController =
-    // Provider.of<HomePageController>(context, listen: false);
+    final high = MediaQuery.of(context).size.height;
+    final wid = MediaQuery.of(context).size.width;
+
     return GetBuilder<HomePageController>(builder: (context) {
-      return GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-        ),
-        itemCount: nearbyController.near.length,
-        itemBuilder: (BuildContext context, int index) {
-          final turfss = nearbyController.near[index];
-          return GestureDetector(
-            onTap: () => Get.to(
-              () => Details(
-                details: turfss,
-              ),
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FittedBox(
+            child: Text(
+              "Near by Grounds",
+              style: TextStyle(
+                  fontSize: high / 35,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 0),
             ),
-            child: Container(
-              margin: const EdgeInsets.all(8),
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white ,
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 3,
-                  )
-                ],
-              ),
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    radius: 50,
-                    child: Image(
-                      // height: 80,
-                      width: double.infinity,
-                      image: NetworkImage(
-                        turfss.turfLogo!,
+          ),
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              // childAspectRatio: (high / 2) / (wid / 5),
+            ),
+            itemCount: nearbyController.near.length,
+            itemBuilder: (BuildContext context, int index) {
+              final turfss = nearbyController.near[index];
+              return GestureDetector(
+                onTap: () => Get.to(
+                  () => Details(
+                    details: turfss,
+                  ),
+                ),
+                child: Container(
+                  // height: high / 2,
+                  margin: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 3,
+                      )
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: high / 20,
+                        child: Image(
+                          // height: 80,
+                          width: double.infinity,
+                          image: NetworkImage(
+                            turfss.turfLogo!,
+                          ),
+                          fit: BoxFit.cover,
+                        ),
                       ),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  height10,
-                  Text(
-                    turfss.turfName!,
-                    style: const TextStyle(
-                      fontSize: 20,
-                    ),
-                  ),
-                  height10,
-                  FittedBox(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
+                      height10,
+                      Text(
+                        turfss.turfName!,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                      height10,
+                      FittedBox(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Icon(
-                              Icons.location_on,
-                              color: Colors.black,
-                              size: 16,
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.location_on,
+                                  color: Colors.black,
+                                  size: 16,
+                                ),
+                                Text(
+                                  turfss.turfPlace!,
+                                ),
+                              ],
                             ),
-                            Text(
-                              turfss.turfPlace!,
+                            width10,
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                Text(
+                                  turfss.turfInfo!.turfRating!.toString(),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                        width10,
-                        Row(
-                          children: [
-                            const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
-                            Text(
-                              turfss.turfInfo!.turfRating!.toString(),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-          );
-        },
+                ),
+              );
+            },
+          ),
+        ],
       );
     });
   }

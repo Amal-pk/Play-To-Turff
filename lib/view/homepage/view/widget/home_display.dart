@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:turf_app/view/core.dart';
+import 'package:turf_app/view/details/controller/details_controller.dart';
+import 'package:turf_app/view/homepage/controller/homapage_controller.dart';
+import 'package:turf_app/view/homepage/view/widget/view_all.dart';
 import 'package:turf_app/view/homepage/view/widget/gridview.dart';
+import 'package:turf_app/view/spot/controller/sopt_controller.dart';
 
 class HomeDisplay extends StatelessWidget {
-  const HomeDisplay({Key? key}) : super(key: key);
-
+  HomeDisplay({Key? key}) : super(key: key);
+  final HomePageController controller = Get.put(HomePageController());
   @override
   Widget build(BuildContext context) {
+    final high = MediaQuery.of(context).size.height;
+    final wid = MediaQuery.of(context).size.width;
+    SoptController _controller = context.read<SoptController>();
     return Column(
       children: [
         Container(
+          height: high / 6,
+          width: wid,
           decoration: BoxDecoration(
             color: Colors.green,
             borderRadius: BorderRadius.circular(30),
@@ -18,30 +29,33 @@ class HomeDisplay extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    "Hai, Amal ",
-                    style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "Explore vanues and \n book your favourite \nspot... ",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "Hai, Amal ",
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
                     ),
-                  ),
-                ],
+                    Text(
+                      "Explore vanues and \n book your favourite \nspot... ",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Image.asset(
                 "asset/image/images.jpg",
-                height: 120,
-                width: 150,
+                height: high / 5,
+                width: wid / 2,
               ),
             ],
           ),
@@ -49,24 +63,38 @@ class HomeDisplay extends StatelessWidget {
         height10,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Text(
-              "Near by Grounds",
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Text(
-              "veiw all",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w300,
-              ),
+          children: [
+            const Divider(),
+            Consumer<DetailsController>(
+              builder: (context, value, _) {
+                return TextButton(
+                  onPressed: (() {
+                    value.allTurfView();
+                  }),
+                  child: const Text(
+                    "veiw all",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),
-        GridviewPage(),
+        Obx(
+          () => controller.isLoading.value
+              ? const CircularProgressIndicator(
+                  color: Colors.grey,
+                )
+              : GridviewPage(),
+        ),
+        Consumer<SoptController>(builder: (context, value, _) {
+          return _controller.isLoading
+              ? const CircularProgressIndicator()
+              : const ViewAllTruff();
+        }),
       ],
     );
   }

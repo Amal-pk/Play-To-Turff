@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:turf_app/view/core.dart';
+import 'package:turf_app/view/error_handling_function/error_handling_function.dart';
 import 'package:turf_app/view/homepage/model/nearbymodel/nearbymoel.dart';
 
 class NearbyService {
@@ -15,7 +16,7 @@ class NearbyService {
         baseUrl + nearbyUrl + place,
         options: Options(headers: {"Authorization": "Bearer $token"}),
       );
-      return HomeResponse.fromJson(response.data);
+      return nearBy(response);
     } catch (e) {
       // ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(

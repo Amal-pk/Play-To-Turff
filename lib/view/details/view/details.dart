@@ -5,6 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:turf_app/view/booking/view/booking_page.dart';
 import 'package:turf_app/view/core.dart';
 import 'package:turf_app/view/details/controller/details_controller.dart';
 import 'package:turf_app/view/details/view/widgets/amenities.dart';
@@ -14,6 +15,7 @@ import 'package:turf_app/view/homepage/model/nearbymodel/datum_model.dart';
 class Details extends StatelessWidget {
   Details({super.key, required this.details});
   final Datum details;
+  
   late final List<String> imagUrL = [
     details.turfImages!.turfImages1!,
     details.turfImages!.turfImages2!,
@@ -156,7 +158,12 @@ class Details extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 16.0, right: 10, left: 10),
         child: FloatingActionButton.extended(
           onPressed: (() {
-            controller.booking();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => BookingPage(bookingDetails: details)),
+              ),
+            );
           }),
           label: const Text(
             "BOOK",

@@ -6,7 +6,7 @@ import 'package:turf_app/view/homepage/controller/homapage_controller.dart';
 import 'package:turf_app/view/homepage/controller/location_controller.dart';
 import 'package:turf_app/view/homepage/view/widget/home_display.dart';
 import 'package:turf_app/view/homepage/view/widget/sreach_gridview.dart';
-import 'package:turf_app/view/sopt/controller/sopt_controller.dart';
+import 'package:turf_app/view/spot/controller/sopt_controller.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -15,8 +15,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<SoptController>(context, listen: false);
-
+    final SoptController controller = Provider.of<SoptController>(context);
+    WidgetsBinding.instance.addPostFrameCallback(((timeStamp) {
+      controller.oninit();
+    }));
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -80,12 +82,12 @@ class HomePage extends StatelessWidget {
                 // const SearchView(),
                 Obx(
                   () => AnimatedCrossFade(
-                    firstChild: const HomeDisplay(),
+                    firstChild: HomeDisplay(),
                     secondChild: const SearchView(),
                     crossFadeState: nearbyController.isSearchClick.value
-                        ? CrossFadeState.showSecond
+                        ?( CrossFadeState.showSecond)
                         : CrossFadeState.showFirst,
-                    duration: Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 500),
                     // firstCurve: Curves.bounceOut,
                     // secondCurve: Curves.,
                   ),
@@ -98,4 +100,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-

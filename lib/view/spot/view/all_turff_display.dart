@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/details/view/details.dart';
-import 'package:turf_app/view/sopt/controller/sopt_controller.dart';
-import 'package:turf_app/view/sopt/view/widget.dart';
+import 'package:turf_app/view/spot/controller/sopt_controller.dart';
+import 'package:turf_app/view/spot/view/widget.dart';
 
 class AllTruffDisplay extends StatelessWidget {
   const AllTruffDisplay({Key? key}) : super(key: key);

@@ -8,7 +8,7 @@ import 'package:turf_app/view/login/login_page/view_controller/login_controller.
 import 'package:turf_app/view/login/mobile_verification/controller/mobileveri_controller.dart';
 import 'package:turf_app/view/login/mobilenumber/controller/controller.dart';
 import 'package:turf_app/view/login/register_page/view_controller/register_controller.dart';
-import 'package:turf_app/view/sopt/controller/sopt_controller.dart';
+import 'package:turf_app/view/spot/controller/sopt_controller.dart';
 import 'package:turf_app/view/splash_screen/veiw/splash_screen.dart';
 
 import 'view/bottom_navigation/controller/bottomnavigation_controller.dart';
