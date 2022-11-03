@@ -20,7 +20,8 @@ class HomePageController extends GetxController {
     SharedPreferences sp = await SharedPreferences.getInstance();
     final token = sp.getString("Token");
     log(token.toString());
-    // final place = controller.currentAddress.value;
+    final place = controller.district;
+    log("+++++++++++++++++++++++++++++++${place.toString()}");
     HomeResponse? nearbyResponse =
         await NearbyService.instance.nearbyTurf("Malappuram", token!);
     log(controller.district.toString());

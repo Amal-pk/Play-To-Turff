@@ -1,10 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turf_app/view/core.dart';
-import 'package:turf_app/view/login/emailverification/view/email_verification.dart';
 import 'package:turf_app/view/login/login_page/view_controller/login_controller.dart';
 import 'package:turf_app/view/login/mobilenumber/view/mobilenumber.dart';
 import 'package:turf_app/view/login/register_page/view/register_page.dart';
@@ -36,10 +32,7 @@ class BottomContainer extends StatelessWidget {
             Consumer<LoginController>(builder: (context, value, _) {
               return ElevatedButton(
                 onPressed: (() async {
-                  value.isloading();
                   await value.loginUser(context);
-
-                  // controller.isLoading = false;
                 }),
                 style: ButtonStyle(
                   elevation: MaterialStateProperty.all(0),
@@ -48,15 +41,15 @@ class BottomContainer extends StatelessWidget {
                   ),
                 ),
                 child: Consumer<LoginController>(builder: (context, value, _) {
-                  return Text(
-                    value.isLoading == true
-                        ? "${CircularProgressIndicator()}"
-                        : "Sign In",
-                    style: const TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 4, 73, 7)),
-                  );
+                  return controller.isLoading
+                      ? const CircularProgressIndicator()
+                      : const Text(
+                          "Sign In",
+                          style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 4, 73, 7)),
+                        );
                 }),
               );
             }),

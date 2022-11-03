@@ -85,11 +85,11 @@ class HomePage extends StatelessWidget {
                     firstChild: HomeDisplay(),
                     secondChild: const SearchView(),
                     crossFadeState: nearbyController.isSearchClick.value
-                        ?( CrossFadeState.showSecond)
+                        ? (CrossFadeState.showSecond)
                         : CrossFadeState.showFirst,
-                    duration: const Duration(milliseconds: 500),
-                    // firstCurve: Curves.bounceOut,
-                    // secondCurve: Curves.,
+                    duration: const Duration(milliseconds: 300),
+                    firstCurve: Curves.fastOutSlowIn,
+                    secondCurve: Curves.fastLinearToSlowEaseIn,
                   ),
                 ),
               ],

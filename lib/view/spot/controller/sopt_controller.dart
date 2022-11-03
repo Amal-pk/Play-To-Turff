@@ -10,6 +10,8 @@ class SoptController extends ChangeNotifier {
   List<Datum> allTruff = [];
   List<Datum> searchItems = [];
   bool isLoading = false;
+  
+  
   oninit() async {
     await allTurff();
   }

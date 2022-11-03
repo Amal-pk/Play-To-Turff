@@ -22,9 +22,10 @@ class GridviewPage extends StatelessWidget {
             child: Text(
               "Near by Grounds",
               style: TextStyle(
-                  fontSize: high / 35,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0),
+                fontSize: high / 35,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 0,
+              ),
             ),
           ),
           GridView.builder(
@@ -60,7 +61,7 @@ class GridviewPage extends StatelessWidget {
                   child: Column(
                     children: [
                       CircleAvatar(
-                        radius: high / 20,
+                        radius: high / 22,
                         child: Image(
                           // height: 80,
                           width: double.infinity,
@@ -71,10 +72,13 @@ class GridviewPage extends StatelessWidget {
                         ),
                       ),
                       height10,
-                      Text(
-                        turfss.turfName!,
-                        style: const TextStyle(
-                          fontSize: 20,
+                      FittedBox(
+                        child: Text(
+                          turfss.turfName!,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            
+                          ),
                         ),
                       ),
                       height10,

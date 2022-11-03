@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turf_app/view/bottom_navigation/view/bottom_navigation.dart';
-import 'package:turf_app/view/homepage/view/home_page.dart';
 import 'package:turf_app/view/login/login_page/model/login_model.dart';
 import 'package:turf_app/view/login/login_page/service/login_service.dart';
 import 'package:turf_app/view/login/register_page/view_controller/register_controller.dart';
@@ -17,6 +16,7 @@ class LoginController extends ChangeNotifier {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   loginUser(context) async {
+    isLoading = true;
     final signupControllerProvider =
         Provider.of<SignupController>(context, listen: false);
     print('----------------------heeeeeeeeeeee------------');
@@ -36,7 +36,7 @@ class LoginController extends ChangeNotifier {
           await LoginService.instance.userLogin(value, context);
       var token = loginRespoModel!.token;
       var refreshToken = loginRespoModel.refreshToken;
-      log('$token  \n$refreshToken');
+      log('tok$token  \nref$refreshToken');
       signupControllerProvider.saveToken(token!, refreshToken!);
       signupControllerProvider.saveToSharedPref();
       if (loginRespoModel.status == true) {
@@ -53,16 +53,13 @@ class LoginController extends ChangeNotifier {
         print(loginRespoModel.message);
       }
     }
+    isLoading = false;
     notifyListeners();
   }
 
   saveUserLoggedIn() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setBool('userloggedin', true);
-  }
-
-  isloading() {
-    isLoading = !isLoading;
   }
 
   isobscure() {
