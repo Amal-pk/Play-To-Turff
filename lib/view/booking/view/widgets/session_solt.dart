@@ -75,9 +75,7 @@ class SessionSolt extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.nights_stay,
-                      color: controller.evening
-                          ? Colors.grey
-                          : Color.fromARGB(255, 117, 117, 116),
+                      color: controller.evening ? Colors.grey : Colors.blueGrey,
                     ),
                     Text(
                       "Evening",
@@ -93,28 +91,27 @@ class SessionSolt extends StatelessWidget {
         ),
         const Divider(
           thickness: 2,
-          color: Color.fromARGB(255, 229, 226, 226),
+          color: Colors.green,
         ),
-        height20,
+        height10,
         TimeSlot(
           cash: solt,
           controller: controller.morning,
           day: solt.turfPrice!.morningPrice.toString(),
+          alltimes: controller.morningTime,
         ),
         TimeSlot(
           cash: solt,
           controller: controller.afternoon,
           day: solt.turfPrice!.afternoonPrice.toString(),
+          alltimes: controller.afternoonTime,
         ),
         TimeSlot(
           cash: solt,
           controller: controller.evening,
           day: solt.turfPrice!.eveningPrice.toString(),
+          alltimes: controller.eveningTime,
         ),
-        SizedBox(
-          height: 200,
-          width: double.infinity,
-        )
       ],
     );
   }

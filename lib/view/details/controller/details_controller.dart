@@ -1,8 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:turf_app/view/booking/view/booking_page.dart';
 
 class DetailsController extends ChangeNotifier {
   bool priceOnTap = false;

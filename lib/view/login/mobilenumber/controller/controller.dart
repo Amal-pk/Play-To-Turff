@@ -16,7 +16,7 @@ class MobileOtpController extends ChangeNotifier {
       const Text('empty qurie');
     } else {
       MobileNumberRespoModel value = MobileNumberRespoModel(number: number);
-      MobileNumberServices.instance.otpverfyimg(value, context);
+      MobileNumberServices.instance.otpverfyimg(value);
 
       saveToSharedPrefMobilrOtp();
       Navigator.push(

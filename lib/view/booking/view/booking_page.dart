@@ -2,6 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_calendar/horizontal_calendar.dart';
+import 'package:provider/provider.dart';
+import 'package:turf_app/view/booking/controller/controller.dart';
 import 'package:turf_app/view/booking/view/widgets/session_solt.dart';
 import 'package:turf_app/view/core.dart';
 import 'package:turf_app/view/homepage/model/nearbymodel/datum_model.dart';
@@ -17,6 +19,8 @@ class BookingPage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<BookinController>(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -25,6 +29,7 @@ class BookingPage extends StatelessWidget {
         leading: IconButton(
           onPressed: (() {
             Navigator.of(context).pop();
+            controller.close();
           }),
           icon: const Icon(
             Icons.arrow_back,
@@ -102,8 +107,26 @@ class BookingPage extends StatelessWidget {
               SessionSolt(
                 solt: bookingDetails,
               ),
+              const SizedBox(
+                height: 100,
+                width: double.infinity,
+              )
             ],
           ),
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(left: 10.0, right: 10, bottom: 16),
+        child: FloatingActionButton.extended(
+          onPressed: (() {}),
+          label:const Text(
+            "BOOK NOW",
+            style: TextStyle(
+              fontSize: 25,
+            ),
+          ),
+          extendedPadding:
+              const EdgeInsetsDirectional.only(start: 150, end: 150),
         ),
       ),
     );

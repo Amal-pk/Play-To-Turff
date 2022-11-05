@@ -5,6 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:turf_app/view/booking/controller/controller.dart';
 import 'package:turf_app/view/booking/view/booking_page.dart';
 import 'package:turf_app/view/core.dart';
 import 'package:turf_app/view/details/controller/details_controller.dart';
@@ -15,7 +16,7 @@ import 'package:turf_app/view/homepage/model/nearbymodel/datum_model.dart';
 class Details extends StatelessWidget {
   Details({super.key, required this.details});
   final Datum details;
-  
+
   late final List<String> imagUrL = [
     details.turfImages!.turfImages1!,
     details.turfImages!.turfImages2!,
@@ -23,6 +24,7 @@ class Details extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    final bookincontroller = Provider.of<BookinController>(context);
     final controller = Provider.of<DetailsController>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -80,7 +82,7 @@ class Details extends StatelessWidget {
                     Image.asset(
                         "asset/image/download__2_-removebg-preview.png"),
                     const Text(
-                      "7\'s",
+                      "7's",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 25,
@@ -164,6 +166,14 @@ class Details extends StatelessWidget {
                 builder: ((context) => BookingPage(bookingDetails: details)),
               ),
             );
+            bookincontroller.dayTime();
+            bookincontroller.timing(details);
+            bookincontroller.bookingDayTime(bookincontroller.times[0],
+                bookincontroller.times[1], bookincontroller.morningTime);
+            bookincontroller.bookingDayTime(bookincontroller.times[2],
+                bookincontroller.times[3], bookincontroller.afternoonTime);
+            bookincontroller.bookingDayTime(bookincontroller.times[4],
+                bookincontroller.times[5], bookincontroller.eveningTime);
           }),
           label: const Text(
             "BOOK",

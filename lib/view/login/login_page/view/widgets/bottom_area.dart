@@ -42,13 +42,16 @@ class BottomContainer extends StatelessWidget {
                 ),
                 child: Consumer<LoginController>(builder: (context, value, _) {
                   return controller.isLoading
-                      ? const CircularProgressIndicator()
+                      ? const CircularProgressIndicator(
+                          color: Colors.white,
+                        )
                       : const Text(
                           "Sign In",
                           style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 4, 73, 7)),
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 4, 73, 7),
+                          ),
                         );
                 }),
               );

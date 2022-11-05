@@ -1,28 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:turf_app/view/homepage/model/nearbymodel/datum_model.dart';
+import 'package:provider/provider.dart';
+import 'package:turf_app/view/booking/controller/controller.dart';
 
 class Times extends StatelessWidget {
-  const Times({super.key, required this.time});
-  final Datum time;
+  const Times(
+      {super.key,
+      required this.text,
+      required this.index,
+      required this.selTim});
+  final String text;
+  final int index;
+  final List selTim;
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<BookinController>(context);
+    final wid = MediaQuery.of(context).size.width;
     return FittedBox(
       child: Container(
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.all(15),
         height: 40,
-        width: 80,
+        width: wid / 4.2,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: Colors.white,
-            boxShadow: const [
+            color: controller.selectedTime.contains(selTim[index])
+                ? Colors.green
+                : Colors.white,
+            boxShadow: [
               BoxShadow(
-                color: Colors.grey,
-                blurRadius: 2,
+                color: controller.selectedTime.contains(selTim[index])
+                    ? Colors.white
+                    : Colors.grey,
+                blurRadius: 3,
               ),
             ]),
-        child:const Center(
-          child: Text("data"),
+        child: Center(
+          child: Text(
+            text,
+            style: TextStyle(
+                color: controller.selectedTime.contains(selTim[index])
+                    ? Colors.white
+                    : Colors.black,
+                fontWeight: FontWeight.bold),
+          ),
         ),
       ),
     );

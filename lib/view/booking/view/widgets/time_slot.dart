@@ -4,23 +4,28 @@ import 'package:turf_app/view/booking/controller/controller.dart';
 import 'package:turf_app/view/booking/view/widgets/times.dart';
 import 'package:turf_app/view/homepage/model/nearbymodel/datum_model.dart';
 
+// ignore: must_be_immutable
 class TimeSlot extends StatelessWidget {
-  const TimeSlot(
+  TimeSlot(
       {super.key,
       required this.cash,
       required this.day,
-      required this.controller});
+      required this.controller,
+      required this.alltimes});
   final Datum cash;
-  final day;
-  final controller;
+  final String day;
+  final bool controller;
+  List alltimes = [];
   @override
   Widget build(BuildContext context) {
-    // BookinController controller = context.read<BookinController>();
+    final wid = MediaQuery.of(context).size.width;
+    final high = MediaQuery.of(context).size.height;
+    final bookinController = Provider.of<BookinController>(context);
     return Consumer<BookinController>(builder: (context, value, _) {
       return AnimatedContainer(
         duration: const Duration(seconds: 1),
-        width: controller ? 500 : 0,
-        height: controller ? 200 : 0,
+        width: controller ? wid : 0,
+        height: controller ? high / 3 : 0,
         alignment:
             controller ? Alignment.centerRight : AlignmentDirectional.center,
         color: Colors.white,
@@ -33,7 +38,7 @@ class TimeSlot extends StatelessWidget {
               children: [
                 FittedBox(
                   child: Text(
-                    day,
+                    " ₹ $day",
                     style: const TextStyle(
                       fontSize: 25,
                     ),
@@ -46,9 +51,19 @@ class TimeSlot extends StatelessWidget {
             ),
             Wrap(
               children: List.generate(
-                5,
-                ((index) => Times(
-                      time: cash,
+                alltimes.length,
+                ((index) => GestureDetector(
+                      onTap: () {
+                        bookinController.selectedTimes(
+                          index,
+                          alltimes,
+                        );
+                      },
+                      child: Times(
+                        text: alltimes[index],
+                        index: index,
+                        selTim: alltimes,
+                      ),
                     )),
               ),
             )
