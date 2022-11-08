@@ -1,12 +1,16 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:turf_app/view/homepage/model/nearbymodel/datum_model.dart';
 
 class BookinController extends ChangeNotifier {
   bool morning = false;
   bool afternoon = false;
   bool evening = false;
+  bool expiare = false;
+
+  late int selectedDate;
 
   List<int> times = [];
   List morningTime = [];
@@ -76,19 +80,94 @@ class BookinController extends ChangeNotifier {
     }
   }
 
-  bookingDayTime(int start, int end, List alltimes) {
+  bookingDayTime(int start, int end, List alltimes, String space) {
     alltimes.clear();
     for (int i = start; i < end; i++) {
-      alltimes.add("${i.toString()}:00 - ${(i + 1).toString()}:00");
+      alltimes.add("$space${i.toString()}:00 - ${(i + 1).toString()}:00$space");
     }
   }
 
-  selectedTimes(int value, list) {
-    if (selectedTime.contains(list[value])) {
-      selectedTime.remove(list[value]);
+  selectedTimes({
+    required String time,
+    required String key,
+  }) {
+    var timeList;
+
+    if (key == "Morning") {
+      timeList = int.parse(time.trim().split(":").first);
     } else {
-      selectedTime.add(list[value]);
+      timeList = int.parse(time.trim().split(":").first) + 12;
     }
+    if (selectedDate == DateTime.now().day) {
+      if (selectedTime.contains(time)) {
+        if (timeList > DateTime.now().hour) {
+          selectedTime.remove(time);
+        } else {
+          log('time not available 555');
+
+          const SnackBar(
+            content: Text('Server Not Founded'),
+            backgroundColor: Color.fromARGB(255, 97, 98, 97),
+          );
+        }
+      } else {
+        if (timeList > DateTime.now().hour) {
+          selectedTime.add(time);
+        } else {
+          log('time not available 333');
+          const SnackBar(
+            content: Text('Server Not Founded'),
+            backgroundColor: Color.fromARGB(255, 97, 98, 97),
+          );
+        }
+      }
+    } else {
+      if (selectedTime.contains(time)) {
+        selectedTime.remove(time);
+      } else {
+        selectedTime.add(time);
+      }
+    }
+    log(time.toString());
+    log(selectedTime.toString());
+    notifyListeners();
+  }
+
+  bool isAvailableCheckFunction({
+    required String item,
+    required String heading,
+  }) {
+    var temp = item.trim();
+    var splittedtime = temp.split(':').first;
+    var parsedTime = int.parse(splittedtime);
+    var finalTime = 0;
+    if (heading != 'Morning') {
+      finalTime = parsedTime + 12;
+    } else {
+      finalTime = parsedTime;
+    }
+    return DateTime.now().hour >= finalTime &&
+        selectedDate == DateTime.now().day;
+  }
+
+  selectDate(data) {
+    selectedDate = int.parse(data.toString().split("-").last);
+    log(selectedDate.toString());
+    selectedTime.clear();
     notifyListeners();
   }
 }
+// ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(
+        //     content: const Text('Awesome SnackBar!'),
+        //     duration: const Duration(milliseconds: 1500),
+        //     width: 280.0, // Width of the SnackBar.
+        //     padding: const EdgeInsets.symmetric(
+        //       horizontal: 8.0, // Inner padding for SnackBar content.
+        //     ),
+        //     behavior: SnackBarBehavior.floating,
+        //     shape: RoundedRectangleBorder(
+        //       borderRadius: BorderRadius.circular(10.0),
+        //     ),
+        //   ),
+        // );

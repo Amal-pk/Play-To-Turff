@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/core.dart';
-import 'package:turf_app/view/login/emailverification/view/email_verification.dart';
 import 'package:turf_app/view/login/mobilenumber/controller/controller.dart';
-import 'package:turf_app/view/login/register_page/view/register_page.dart';
 import 'package:turf_app/view/login/register_page/view/widget/textfield.dart';
 
 class MobileNumber extends StatelessWidget {

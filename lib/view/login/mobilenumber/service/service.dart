@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:turf_app/error_handling_function/error_handling_function.dart';
@@ -13,12 +15,18 @@ class MobileNumberServices {
   }
   ErrorCode errorCode = ErrorCode();
   Future<MobileNumberRespoModel?> otpverfyimg(dynamic value) async {
+    log(value);
     try {
       Response response = await Dio().post(
         baseUrl + mobileUrl,
         data: value.tojson(),
       );
       if (response.statusCode == 200) {
+        print(response.data);
+        const SnackBar(
+          content: Text("Login successfully"),
+          backgroundColor: Color.fromARGB(255, 97, 98, 97),
+        );
         return MobileNumberRespoModel.fromJson(response.data);
       }
     } on DioError catch (e) {

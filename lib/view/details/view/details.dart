@@ -169,11 +169,12 @@ class Details extends StatelessWidget {
             bookincontroller.dayTime();
             bookincontroller.timing(details);
             bookincontroller.bookingDayTime(bookincontroller.times[0],
-                bookincontroller.times[1], bookincontroller.morningTime);
+                bookincontroller.times[1], bookincontroller.morningTime, '');
             bookincontroller.bookingDayTime(bookincontroller.times[2],
-                bookincontroller.times[3], bookincontroller.afternoonTime);
+                bookincontroller.times[3], bookincontroller.afternoonTime, ' ');
             bookincontroller.bookingDayTime(bookincontroller.times[4],
-                bookincontroller.times[5], bookincontroller.eveningTime);
+                bookincontroller.times[5], bookincontroller.eveningTime, '  ');
+            bookincontroller.selectedTime.clear();
           }),
           label: const Text(
             "BOOK",

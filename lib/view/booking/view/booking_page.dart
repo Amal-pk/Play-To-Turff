@@ -98,17 +98,16 @@ class BookingPage extends StatelessWidget {
                 selectedColor: Colors.green,
                 showMonth: true,
                 onDateSelected: (date) {
-                  if (kDebugMode) {
-                    print(date.toString());
-                  }
+                  controller.selectDate(date);
                 },
               ),
               height20,
               SessionSolt(
                 solt: bookingDetails,
+                
               ),
               const SizedBox(
-                height: 100,
+                // height: 100,
                 width: double.infinity,
               )
             ],
@@ -119,7 +118,7 @@ class BookingPage extends StatelessWidget {
         padding: const EdgeInsets.only(left: 10.0, right: 10, bottom: 16),
         child: FloatingActionButton.extended(
           onPressed: (() {}),
-          label:const Text(
+          label: const Text(
             "BOOK NOW",
             style: TextStyle(
               fontSize: 25,

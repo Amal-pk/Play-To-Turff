@@ -17,7 +17,15 @@ class LoginService {
       Response response =
           await Dio().post(baseUrl + loginUrl, data: value.toJoson());
 
-      return errorCode.success(response);
+      if (response.statusCode == 200) {
+        // print(response.data);
+        // log(response.toString());
+        const SnackBar(
+          content: Text("Login successfully"),
+          backgroundColor: Color.fromARGB(255, 97, 98, 97),
+        );
+        return LoginRespoModel.fromJson(response.data);
+      }
     } on DioError catch (e) {
       return errorCode.status401(e);
     } catch (e) {

@@ -10,6 +10,7 @@ import 'package:turf_app/view/homepage/model/nearbymodel/datum_model.dart';
 class SessionSolt extends StatelessWidget {
   const SessionSolt({super.key, required this.solt});
   final Datum solt;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +35,13 @@ class SessionSolt extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.sunny,
-                        color: controller.morning ? Colors.grey : Colors.yellow,
+                        color: controller.morning ? Colors.yellow : Colors.grey,
                       ),
                       Text(
                         "Morning",
                         style: TextStyle(
                           color:
-                              controller.morning ? Colors.grey : Colors.black,
+                              controller.morning ? Colors.black : Colors.grey,
                         ),
                       ),
                     ],
@@ -55,13 +56,13 @@ class SessionSolt extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.wb_sunny,
-                      color: controller.afternoon ? Colors.grey : Colors.amber,
+                      color: controller.afternoon ? Colors.amber : Colors.grey,
                     ),
                     Text(
                       "Afternoon",
                       style: TextStyle(
                         color:
-                            controller.afternoon ? Colors.grey : Colors.black,
+                            controller.afternoon ? Colors.black : Colors.grey,
                       ),
                     ),
                   ],
@@ -75,12 +76,12 @@ class SessionSolt extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.nights_stay,
-                      color: controller.evening ? Colors.grey : Colors.blueGrey,
+                      color: controller.evening ? Colors.blueGrey : Colors.grey,
                     ),
                     Text(
                       "Evening",
                       style: TextStyle(
-                        color: controller.evening ? Colors.grey : Colors.black,
+                        color: controller.evening ? Colors.black : Colors.grey,
                       ),
                     ),
                   ],
@@ -99,18 +100,21 @@ class SessionSolt extends StatelessWidget {
           controller: controller.morning,
           day: solt.turfPrice!.morningPrice.toString(),
           alltimes: controller.morningTime,
+          heading: 'Morning',
         ),
         TimeSlot(
           cash: solt,
           controller: controller.afternoon,
           day: solt.turfPrice!.afternoonPrice.toString(),
           alltimes: controller.afternoonTime,
+          heading: 'Afternoon',
         ),
         TimeSlot(
           cash: solt,
           controller: controller.evening,
           day: solt.turfPrice!.eveningPrice.toString(),
           alltimes: controller.eveningTime,
+          heading: 'Evening',
         ),
       ],
     );

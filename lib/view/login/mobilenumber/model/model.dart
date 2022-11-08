@@ -8,6 +8,7 @@ class MobileNumberRespoModel {
     return MobileNumberRespoModel(
       id: json['_id'],
       status: json['status'],
+      number: json['user_number'],
     );
   }
 

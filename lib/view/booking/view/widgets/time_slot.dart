@@ -6,15 +6,18 @@ import 'package:turf_app/view/homepage/model/nearbymodel/datum_model.dart';
 
 // ignore: must_be_immutable
 class TimeSlot extends StatelessWidget {
-  TimeSlot(
-      {super.key,
-      required this.cash,
-      required this.day,
-      required this.controller,
-      required this.alltimes});
+  TimeSlot({
+    super.key,
+    required this.cash,
+    required this.day,
+    required this.controller,
+    required this.alltimes,
+    required this.heading,
+  });
   final Datum cash;
   final String day;
   final bool controller;
+  final String heading;
   List alltimes = [];
   @override
   Widget build(BuildContext context) {
@@ -55,14 +58,16 @@ class TimeSlot extends StatelessWidget {
                 ((index) => GestureDetector(
                       onTap: () {
                         bookinController.selectedTimes(
-                          index,
-                          alltimes,
+                          key: heading,
+                          time: alltimes[index],
                         );
+                        // bookinController.expaireTime(alltimes);
                       },
                       child: Times(
                         text: alltimes[index],
                         index: index,
                         selTim: alltimes,
+                        heading: heading,
                       ),
                     )),
               ),
