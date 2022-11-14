@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/booking/controller/controller.dart';
@@ -9,13 +11,12 @@ class TimeSlot extends StatelessWidget {
   TimeSlot({
     super.key,
     required this.cash,
-    required this.day,
     required this.controller,
     required this.alltimes,
     required this.heading,
   });
-  final Datum cash;
-  final String day;
+  final int cash;
+
   final bool controller;
   final String heading;
   List alltimes = [];
@@ -41,7 +42,7 @@ class TimeSlot extends StatelessWidget {
               children: [
                 FittedBox(
                   child: Text(
-                    " ₹ $day",
+                    " ₹ $cash",
                     style: const TextStyle(
                       fontSize: 25,
                     ),
@@ -57,9 +58,13 @@ class TimeSlot extends StatelessWidget {
                 alltimes.length,
                 ((index) => GestureDetector(
                       onTap: () {
+                        log(bookinController.finalTime.toString());
+                        log('dsfdsfsd');
                         bookinController.selectedTimes(
                           key: heading,
                           time: alltimes[index],
+                          context: context,
+                          cash: cash,
                         );
                         // bookinController.expaireTime(alltimes);
                       },
@@ -68,6 +73,7 @@ class TimeSlot extends StatelessWidget {
                         index: index,
                         selTim: alltimes,
                         heading: heading,
+                        cash: cash,
                       ),
                     )),
               ),

@@ -1,6 +1,3 @@
-import 'dart:developer';
-import 'dart:ui';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -175,6 +172,9 @@ class Details extends StatelessWidget {
             bookincontroller.bookingDayTime(bookincontroller.times[4],
                 bookincontroller.times[5], bookincontroller.eveningTime, '  ');
             bookincontroller.selectedTime.clear();
+            bookincontroller.allReadyBooked(details.id);
+            bookincontroller.totalPrice = 0;
+            bookincontroller.sendToBackend.clear();
           }),
           label: const Text(
             "BOOK",

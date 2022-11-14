@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/booking/controller/controller.dart';
@@ -10,7 +8,6 @@ import 'package:turf_app/view/homepage/model/nearbymodel/datum_model.dart';
 class SessionSolt extends StatelessWidget {
   const SessionSolt({super.key, required this.solt});
   final Datum solt;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -96,23 +93,20 @@ class SessionSolt extends StatelessWidget {
         ),
         height10,
         TimeSlot(
-          cash: solt,
+          cash: solt.turfPrice!.morningPrice!,
           controller: controller.morning,
-          day: solt.turfPrice!.morningPrice.toString(),
           alltimes: controller.morningTime,
           heading: 'Morning',
         ),
         TimeSlot(
-          cash: solt,
+          cash: solt.turfPrice!.afternoonPrice!,
           controller: controller.afternoon,
-          day: solt.turfPrice!.afternoonPrice.toString(),
           alltimes: controller.afternoonTime,
           heading: 'Afternoon',
         ),
         TimeSlot(
-          cash: solt,
+          cash: solt.turfPrice!.eveningPrice!,
           controller: controller.evening,
-          day: solt.turfPrice!.eveningPrice.toString(),
           alltimes: controller.eveningTime,
           heading: 'Evening',
         ),

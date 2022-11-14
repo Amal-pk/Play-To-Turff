@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:horizontal_calendar/horizontal_calendar.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/booking/controller/controller.dart';
+import 'package:turf_app/view/booking/controller/payment_controller.dart';
 import 'package:turf_app/view/booking/view/widgets/session_solt.dart';
 import 'package:turf_app/view/core.dart';
 import 'package:turf_app/view/homepage/model/nearbymodel/datum_model.dart';
@@ -19,8 +19,13 @@ class BookingPage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    final payController = Provider.of<PaymentController>(context);
     final controller = Provider.of<BookinController>(context);
-
+    final wid = MediaQuery.of(context).size.width;
+    final high = MediaQuery.of(context).size.height;
+    WidgetsBinding.instance.addPostFrameCallback(((timeStamp) {
+      controller.oninit();
+    }));
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -30,6 +35,7 @@ class BookingPage extends StatelessWidget {
           onPressed: (() {
             Navigator.of(context).pop();
             controller.close();
+            // controller.sendToBackend.clear();
           }),
           icon: const Icon(
             Icons.arrow_back,
@@ -99,12 +105,15 @@ class BookingPage extends StatelessWidget {
                 showMonth: true,
                 onDateSelected: (date) {
                   controller.selectDate(date);
+                  controller.allReadyBooked(bookingDetails.id);
+                  controller.checkingDate();
+                  controller.totalPrice = 0;
+                  // controller.sendToBackend.clear();
                 },
               ),
               height20,
               SessionSolt(
                 solt: bookingDetails,
-                
               ),
               const SizedBox(
                 // height: 100,
@@ -116,16 +125,106 @@ class BookingPage extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(left: 10.0, right: 10, bottom: 16),
-        child: FloatingActionButton.extended(
-          onPressed: (() {}),
-          label: const Text(
-            "BOOK NOW",
-            style: TextStyle(
-              fontSize: 25,
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8),
+              child: Container(
+                width: wid / 3,
+                height: high / 15,
+                decoration: BoxDecoration(
+                    color: Colors.white70,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 3,
+                      )
+                    ]),
+                child: Center(
+                  child: Text(
+                    "₹ ${controller.totalPrice.toString()}",
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ),
-          extendedPadding:
-              const EdgeInsetsDirectional.only(start: 150, end: 150),
+            Expanded(
+              child: FloatingActionButton.extended(
+                onPressed: (() {
+                  showDialog(
+                    context: context,
+                    builder: ((context) {
+                      return Dialog(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: SizedBox(
+                          height: 300,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Are You Sure to payment',
+                                  style: TextStyle(fontSize: 25),
+                                ),
+                                Text(
+                                  "₹ ${controller.totalPrice.toString()}",
+                                  style: const TextStyle(fontSize: 25),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          // controller.continueBooking(
+                                          //     bookingDetails, context);
+                                          controller.razorpayOption(
+                                            controller.totalPrice,
+                                            bookingDetails,
+                                            context,
+                                          );
+                                        },
+                                        child: const Text("Continue"),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text("Cancel"),
+                                      ),
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  );
+                }),
+                label: const Text(
+                  "BOOK NOW",
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),
+                ),
+                extendedPadding:
+                    const EdgeInsetsDirectional.only(start: 100, end: 100),
+              ),
+            ),
+          ],
         ),
       ),
     );

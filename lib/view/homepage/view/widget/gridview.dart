@@ -12,7 +12,7 @@ class GridviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final high = MediaQuery.of(context).size.height;
-    final wid = MediaQuery.of(context).size.width;
+    // final wid = MediaQuery.of(context).size.width;
 
     return GetBuilder<HomePageController>(builder: (context) {
       return Column(

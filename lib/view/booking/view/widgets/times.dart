@@ -9,11 +9,13 @@ class Times extends StatelessWidget {
     required this.index,
     required this.selTim,
     required this.heading,
+    required this.cash,
   });
   final String text;
   final int index;
   final List selTim;
   final String heading;
+  final int cash;
 
   @override
   Widget build(BuildContext context) {
@@ -30,31 +32,41 @@ class Times extends StatelessWidget {
             color: controller.selectedTime.contains(selTim[index])
                 ? Colors.green
                 : controller.isAvailableCheckFunction(
-                        item: selTim[index], heading: heading)
-                    ? Colors.grey[300]
+                    item: selTim[index],
+                    heading: heading,
+                  )
+                    ? controller.result.contains(controller.finalTime)
+                        ? Colors.amber
+                        : Colors.grey[300]
                     : Colors.white,
             boxShadow: [
               BoxShadow(
                 color: controller.selectedTime.contains(selTim[index])
                     ? Colors.white
                     : controller.isAvailableCheckFunction(
-                            item: selTim[index], heading: heading)
+                        item: selTim[index],
+                        heading: heading,
+                      )
                         ? Colors.white
                         : Colors.grey,
                 blurRadius: 3,
               ),
             ]),
         child: Center(
-          child: Text(
-            text.trim(),
-            style: TextStyle(
-              color: controller.selectedTime.contains(selTim[index])
-                  ? Colors.white
-                  : controller.isAvailableCheckFunction(
-                          item: selTim[index], heading: heading)
-                      ? Colors.grey
-                      : Colors.black,
-              fontWeight: FontWeight.bold,
+          child: FittedBox(
+            child: Text(
+              text.trim(),
+              style: TextStyle(
+                color: controller.selectedTime.contains(selTim[index])
+                    ? Colors.white
+                    : controller.isAvailableCheckFunction(
+                        item: selTim[index],
+                        heading: heading,
+                      )
+                        ? Colors.grey
+                        : Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

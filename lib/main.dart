@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:turf_app/error_handling_function/error_handling_function.dart';
 import 'package:turf_app/view/booking/controller/controller.dart';
+import 'package:turf_app/view/booking/controller/payment_controller.dart';
 import 'package:turf_app/view/details/controller/details_controller.dart';
 import 'package:turf_app/view/login/emailverification/view_controller/controller.dart';
-import 'package:turf_app/view/homepage/controller/homapage_controller.dart';
 import 'package:turf_app/view/login/login_page/view_controller/login_controller.dart';
 import 'package:turf_app/view/login/mobile_verification/controller/mobileveri_controller.dart';
 import 'package:turf_app/view/login/mobilenumber/controller/controller.dart';
@@ -55,7 +54,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: ((context) => BookinController()),
-        ), 
+        ),
+        ChangeNotifierProvider(
+          create: ((context) => PaymentController()),
+        ),
       ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,

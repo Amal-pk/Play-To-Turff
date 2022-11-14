@@ -13,7 +13,7 @@ class ViewAllTruff extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final high = MediaQuery.of(context).size.height;
-    final wid = MediaQuery.of(context).size.width;
+    // final wid = MediaQuery.of(context).size.width;
 
     DetailsController controller = context.read<DetailsController>();
     return Consumer<DetailsController>(

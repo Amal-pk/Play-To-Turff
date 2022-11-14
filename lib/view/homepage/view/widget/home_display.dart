@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -41,12 +43,14 @@ class HomeDisplay extends StatelessWidget {
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      "Explore vanues and \n book your favourite \nspot... ",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
+                    FittedBox(
+                      child: Text(
+                        "Explore vanues and \nbook your favourite \nspot... ",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
                     ),
                   ],
@@ -55,7 +59,7 @@ class HomeDisplay extends StatelessWidget {
               Image.asset(
                 "asset/image/images.jpg",
                 height: high / 5,
-                width: wid / 2,
+                width: wid / 3,
               ),
             ],
           ),

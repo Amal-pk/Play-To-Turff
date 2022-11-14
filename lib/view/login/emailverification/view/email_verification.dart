@@ -136,7 +136,7 @@ class PinCodeVerificationScreen extends StatelessWidget {
             InkWell(
               onTap: () {
                 emailVerificationController.verifyEmailOtp(context);
-                print('object');
+                // print('object');
               },
               borderRadius: BorderRadius.circular(30.0),
               child: Ink(

@@ -11,12 +11,19 @@ class GetAllTurfTimeSlot {
       GetAllTurfTimeSlot(
         status: json["status"],
         data: List<BookNowTimeSlot>.from(
-            json["data"].map((x) => BookNowTimeSlot.fromJson(x))),
+          json["data"].map(
+            (x) => BookNowTimeSlot.fromJson(x),
+          ),
+        ),
       );
 
   Map<String, dynamic> toJson() => {
         "status": status,
-        "data": List<dynamic>.from(data!.map((x) => x.toJson())),
+        "data": List<dynamic>.from(
+          data!.map(
+            (x) => x.toJson(),
+          ),
+        ),
       };
 }
 
@@ -38,12 +45,16 @@ class BookNowTimeSlot {
         id: json["_id"],
         bookingDate: json["booking_date"],
         turfId: json["turf_id"],
-        timeSlot: List<int>.from(json["time_slot"].map((x) => x)),
+        timeSlot: List<int>.from(
+          json["time_slot"].map((x) => x),
+        ),
       );
 
   Map<String, dynamic> toJson() => {
         "booking_date": bookingDate,
         "turf_id": turfId,
-        "time_slot": List<dynamic>.from(timeSlot!.map((x) =>x)),
-};
+        "time_slot": List<dynamic>.from(
+          timeSlot!.map((x) => x),
+        ),
+      };
 }

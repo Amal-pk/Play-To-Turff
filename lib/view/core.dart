@@ -21,7 +21,7 @@ const registerUrl = 'account/signup-email';
 const mobileUrl = 'account/login-number';
 const nearbyUrl = 'user/nearest-turf/';
 const allTurfUrl = 'user/all-turf';
-const addBookingUrl = '/account/add-booking';
-const getBookingUrl = '/account/get-booking/';
+const addBookingUrl = 'account/add-booking';
+const getBookingUrl = 'account/get-booking/';
 // 'https://fauxspot.herokuapp.com/'
 // https://play-to-turf.herokuapp.com/

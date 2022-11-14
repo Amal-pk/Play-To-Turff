@@ -7,7 +7,7 @@ import 'package:turf_app/view/spot/view/sopt.dart';
 
 class BottomNavigation extends StatelessWidget {
   BottomNavigation({super.key});
-  List<dynamic> screens = [
+ final List<dynamic> screens = [
     HomePage(),
      Spot(),
     Profile(),
