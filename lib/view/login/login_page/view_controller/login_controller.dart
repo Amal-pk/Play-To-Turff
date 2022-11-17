@@ -7,19 +7,20 @@ import 'package:turf_app/view/bottom_navigation/view/bottom_navigation.dart';
 import 'package:turf_app/view/login/login_page/model/login_model.dart';
 import 'package:turf_app/view/login/login_page/service/login_service.dart';
 import 'package:turf_app/view/login/register_page/view_controller/register_controller.dart';
+import 'package:turf_app/view/splash_screen/veiw/splash_screen.dart';
 
 class LoginController extends ChangeNotifier {
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool obscure = true;
   bool isLoading = false;
-  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   loginUser(context) async {
-    isLoading = true;
     final signupControllerProvider =
         Provider.of<SignupController>(context, listen: false);
-    print('----------------------heeeeeeeeeeee------------');
+    // print('----------------------heeeeeeeeeeee------------');
+    isLoading = true;
 
     final email = emailController.text.trim();
     final password = passwordController.text.trim();

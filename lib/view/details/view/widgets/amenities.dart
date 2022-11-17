@@ -10,74 +10,77 @@ class AmenititesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  details.turfAmenities!.turfWater == true
-                      ? Icons.check_circle
-                      : Icons.cancel_rounded,
-                  size: 20,
-                  color: details.turfAmenities!.turfWater == true
-                      ? Colors.green
-                      : Colors.red,
-                ),
-                const Text(
-                  "Water",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    details.turfAmenities!.turfWater == true
+                        ? Icons.check_circle
+                        : Icons.cancel_rounded,
+                    size: 20,
+                    color: details.turfAmenities!.turfWater == true
+                        ? Colors.green
+                        : Colors.red,
                   ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Icon(
-                  details.turfAmenities!.turfDressing == true
-                      ? Icons.check_circle
-                      : Icons.cancel_rounded,
-                  size: 20,
-                  color: details.turfAmenities!.turfDressing == true
-                      ? Colors.green
-                      : Colors.red,
-                ),
-                const Text(
-                  "Dressing Room",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
+                  const Text(
+                    "Water",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Icon(
-                  details.turfAmenities!.turfCafeteria == true
-                      ? Icons.check_circle
-                      : Icons.cancel_rounded,
-                  size: 20,
-                  color: details.turfAmenities!.turfCafeteria == true
-                      ? Colors.green
-                      : Colors.red,
-                ),
-                const Text(
-                  "Cafeteria",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(
+                    details.turfAmenities!.turfDressing == true
+                        ? Icons.check_circle
+                        : Icons.cancel_rounded,
+                    size: 20,
+                    color: details.turfAmenities!.turfDressing == true
+                        ? Colors.green
+                        : Colors.red,
                   ),
-                ),
-              ],
-            ),
-          ],
+                  const Text(
+                    "Dressing Room",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(
+                    details.turfAmenities!.turfCafeteria == true
+                        ? Icons.check_circle
+                        : Icons.cancel_rounded,
+                    size: 20,
+                    color: details.turfAmenities!.turfCafeteria == true
+                        ? Colors.green
+                        : Colors.red,
+                  ),
+                  const Text(
+                    "Cafeteria",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
         height20,
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [

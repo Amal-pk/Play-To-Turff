@@ -32,11 +32,9 @@ class Times extends StatelessWidget {
             color: controller.selectedTime.contains(selTim[index])
                 ? Colors.green
                 : controller.isAvailableCheckFunction(
-                    item: selTim[index],
-                    heading: heading,
-                  )
+                        item: selTim[index], heading: heading)
                     ? controller.result.contains(controller.finalTime)
-                        ? Colors.amber
+                        ? Colors.blueGrey
                         : Colors.grey[300]
                     : Colors.white,
             boxShadow: [
@@ -44,9 +42,7 @@ class Times extends StatelessWidget {
                 color: controller.selectedTime.contains(selTim[index])
                     ? Colors.white
                     : controller.isAvailableCheckFunction(
-                        item: selTim[index],
-                        heading: heading,
-                      )
+                            item: selTim[index], heading: heading)
                         ? Colors.white
                         : Colors.grey,
                 blurRadius: 3,
@@ -60,10 +56,10 @@ class Times extends StatelessWidget {
                 color: controller.selectedTime.contains(selTim[index])
                     ? Colors.white
                     : controller.isAvailableCheckFunction(
-                        item: selTim[index],
-                        heading: heading,
-                      )
-                        ? Colors.grey
+                            item: selTim[index], heading: heading)
+                        ? controller.result.contains(controller.finalTime)
+                            ? Colors.grey
+                            : Colors.grey
                         : Colors.black,
                 fontWeight: FontWeight.bold,
               ),

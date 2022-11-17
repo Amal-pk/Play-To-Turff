@@ -1,4 +1,3 @@
-
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:turf_app/view/bottom_navigation/view/bottom_navigation.dart';
@@ -12,7 +11,7 @@ class SplashScreenController extends GetxController {
 
   @override
   void onInit() {
-    nearbyController.nearbyTruff();
+    // nearbyController.nearbyTruff();
     locationController.getCurrentPosition();
     checkUserLoggedIn();
     super.onInit();
@@ -25,7 +24,7 @@ class SplashScreenController extends GetxController {
       await Future.delayed(const Duration(seconds: 2));
       Get.off(() => const LoginPage());
     } else {
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
       Get.off(() => BottomNavigation());
     }
   }

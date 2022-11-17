@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:turf_app/view/core.dart';
 import 'package:turf_app/view/details/view/details.dart';
 import 'package:turf_app/view/homepage/controller/homapage_controller.dart';
@@ -8,13 +9,14 @@ import 'package:turf_app/view/homepage/controller/location_controller.dart';
 class GridviewPage extends StatelessWidget {
   GridviewPage({super.key});
   final LocationController locationController = Get.put(LocationController());
-  final HomePageController nearbyController = Get.put(HomePageController());
+  // final HomePageController nearbyController = Get.put(HomePageController());
   @override
   Widget build(BuildContext context) {
     final high = MediaQuery.of(context).size.height;
     // final wid = MediaQuery.of(context).size.width;
+    final HomePageController homePageController = Provider.of<HomePageController>(context);
 
-    return GetBuilder<HomePageController>(builder: (context) {
+    return Consumer<HomePageController>(builder: (context, value, _) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -35,9 +37,9 @@ class GridviewPage extends StatelessWidget {
               crossAxisCount: 2,
               // childAspectRatio: (high / 2) / (wid / 5),
             ),
-            itemCount: nearbyController.near.length,
+            itemCount: homePageController.near.length,
             itemBuilder: (BuildContext context, int index) {
-              final turfss = nearbyController.near[index];
+              final turfss = homePageController.near[index];
               return GestureDetector(
                 onTap: () => Get.to(
                   () => Details(
@@ -77,7 +79,6 @@ class GridviewPage extends StatelessWidget {
                           turfss.turfName!,
                           style: const TextStyle(
                             fontSize: 20,
-                            
                           ),
                         ),
                       ),

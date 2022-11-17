@@ -11,11 +11,15 @@ import 'package:turf_app/view/spot/controller/sopt_controller.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
   final LocationController locationController = Get.put(LocationController());
-  final HomePageController nearbyController = Get.put(HomePageController());
 
   @override
   Widget build(BuildContext context) {
+    final HomePageController homePageController =
+        Provider.of<HomePageController>(context);
     final SoptController controller = Provider.of<SoptController>(context);
+    // WidgetsBinding.instance.addPostFrameCallback(((timeStamp) {
+    //   homePageController.nearbyTruff();
+    // }));
     WidgetsBinding.instance.addPostFrameCallback(((timeStamp) {
       controller.oninit();
     }));
@@ -39,11 +43,12 @@ class HomePage extends StatelessWidget {
                         ),
                         Obx(
                           () => Text(
-                              ' ${locationController.currentAddress.value}',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.black,
-                              )),
+                            ' ${locationController.currentAddress.value}',
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -57,41 +62,44 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   padding: const EdgeInsets.only(left: 16),
-                  child: TextFormField(
-                    onChanged: (value) {
-                      if (value.isNotEmpty) {
-                        nearbyController.isSearchClick.value = true;
-                      } else {
-                        nearbyController.isSearchClick.value = false;
-                      }
-                      controller.search(value);
-                    },
-                    decoration: const InputDecoration(
-                      hintText: 'Search',
-                      suffixIcon: Icon(
-                        Icons.search,
-                        color: Colors.black,
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: TextFormField(
+                      onChanged: (value) {
+                        if (value.isNotEmpty) {
+                          homePageController.isSearchClick = true;
+                        } else {
+                          homePageController.isSearchClick = false;
+                        }
+                        controller.search(value);
+                      },
+                      decoration: const InputDecoration(
+                        hintText: 'Search',
+                        suffixIcon: Icon(
+                          Icons.search,
+                          color: Colors.black,
+                        ),
+                        border: InputBorder.none,
                       ),
-                      border: InputBorder.none,
+                      keyboardType: TextInputType.name,
                     ),
-                    keyboardType: TextInputType.name,
                   ),
                 ),
                 height20,
                 // HomeDisplay()
                 // const SearchView(),
-                Obx(
-                  () => AnimatedCrossFade(
-                    firstChild: HomeDisplay(),
+                Consumer<HomePageController>(builder: (context, value, _) {
+                  return AnimatedCrossFade(
+                    firstChild: const HomeDisplay(),
                     secondChild: const SearchView(),
-                    crossFadeState: nearbyController.isSearchClick.value
+                    crossFadeState: homePageController.isSearchClick
                         ? (CrossFadeState.showSecond)
                         : CrossFadeState.showFirst,
                     duration: const Duration(milliseconds: 300),
                     firstCurve: Curves.fastOutSlowIn,
                     secondCurve: Curves.fastLinearToSlowEaseIn,
-                  ),
-                ),
+                  );
+                }),
               ],
             ),
           ),

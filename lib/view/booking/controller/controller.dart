@@ -22,7 +22,7 @@ class BookinController extends ChangeNotifier {
   var formatter = 0;
   var totalPrice = 0;
   late Datum id;
-  dynamic context;
+  late BuildContext cxt;
 
   Map<String, List<int>> alReadyBookedList = {};
 
@@ -81,6 +81,7 @@ class BookinController extends ChangeNotifier {
     notifyListeners();
   }
 
+//////////////////////////////////time
   timing(Datum time) {
     times.clear();
     times.addAll([
@@ -98,6 +99,7 @@ class BookinController extends ChangeNotifier {
     }
   }
 
+//////////////////////////booking
   bookingDayTime(int start, int end, List alltimes, String space) {
     alltimes.clear();
     for (int i = start; i < end; i++) {
@@ -223,9 +225,9 @@ class BookinController extends ChangeNotifier {
   continueBooking(Datum data, context) async {
     final bookInDate = DateFormat.yMd().format(selectedDate);
     final turfid = data.id;
-    log(sendToBackend.toString());
-    log(bookInDate);
-    log('send to backend inside continue booking $sendToBackend');
+    // log(sendToBackend.toString());
+    // log(bookInDate);
+    // log('send to backend inside continue booking $sendToBackend');
     BookNowTimeSlot turfDetails = BookNowTimeSlot(
       bookingDate: bookInDate.toString(),
       id: turfid,
@@ -233,10 +235,10 @@ class BookinController extends ChangeNotifier {
     );
     bool bookInSlot = await BookingServiceAdd.instance.book(turfDetails);
     if (bookInSlot) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Booked"),
-        backgroundColor: Color.fromARGB(255, 97, 98, 97),
-      ));
+      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      //   content: Text("Booked"),
+      //   backgroundColor: Color.fromARGB(255, 97, 98, 97),
+      // ));
       log(",,,,,,,,,,,,,,,,,,,,,,,,,,,$bookInSlot,,,,,,,");
     }
     log(",,,,,,,,,,,,77777777,,,,,,,,,,,,,,,$bookInSlot,,,,,,,");
@@ -254,7 +256,7 @@ class BookinController extends ChangeNotifier {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
-    continueBooking(id, context);
+    continueBooking(id, cxt);
     Get.offAll(() => BottomNavigation());
   }
 
@@ -271,7 +273,7 @@ class BookinController extends ChangeNotifier {
 
   razorpayOption(int totalPrice, Datum data, context) {
     id = data;
-    context = context;
+    cxt = context;
     var options = {
       'key': 'rzp_test_JoO24Z2D1yYvCF',
       'amount': totalPrice * 100, //in the smallest currency sub-unit.
@@ -284,37 +286,6 @@ class BookinController extends ChangeNotifier {
     razorpay.open(options);
   }
 }
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // ScaffoldMessenger.of(context).showSnackBar(
 //           SnackBar(

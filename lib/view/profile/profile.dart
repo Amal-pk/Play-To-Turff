@@ -11,7 +11,7 @@ class Profile extends StatelessWidget {
       body: SafeArea(
         child: IconButton(
           onPressed: () {
-            homePageController.logOut();
+            homePageController.logOut(context);
           },
           icon: Icon(Icons.exit_to_app),
         ),

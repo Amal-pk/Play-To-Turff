@@ -1,7 +1,5 @@
-// ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/core.dart';
 import 'package:turf_app/view/details/controller/details_controller.dart';
@@ -11,10 +9,11 @@ import 'package:turf_app/view/homepage/view/widget/gridview.dart';
 import 'package:turf_app/view/spot/controller/sopt_controller.dart';
 
 class HomeDisplay extends StatelessWidget {
-  HomeDisplay({Key? key}) : super(key: key);
-  final HomePageController controller = Get.put(HomePageController());
+  const HomeDisplay({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final HomePageController controller =
+        Provider.of<HomePageController>(context);
     final high = MediaQuery.of(context).size.height;
     final wid = MediaQuery.of(context).size.width;
     SoptController _controller = context.read<SoptController>();
@@ -39,9 +38,10 @@ class HomeDisplay extends StatelessWidget {
                     Text(
                       "Hai, Amal ",
                       style: TextStyle(
-                          fontSize: 25,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                        fontSize: 25,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                     FittedBox(
                       child: Text(
@@ -87,13 +87,13 @@ class HomeDisplay extends StatelessWidget {
             ),
           ],
         ),
-        Obx(
-          () => controller.isLoading.value
+        Consumer<HomePageController>(builder: (context, value, _) {
+          return controller.isLoading
               ? const CircularProgressIndicator(
                   color: Colors.grey,
                 )
-              : GridviewPage(),
-        ),
+              : GridviewPage();
+        }),
         Consumer<SoptController>(builder: (context, value, _) {
           return _controller.isLoading
               ? const CircularProgressIndicator()

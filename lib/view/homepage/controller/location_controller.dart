@@ -62,7 +62,7 @@ class LocationController extends GetxController {
     ).then((List<Placemark> placemarks) {
       Placemark place = placemarks[0];
       currentAddress.value =
-          '${place.subLocality}, ${place.subAdministrativeArea}';
+          '${place.subLocality},${place.subAdministrativeArea}';
       district = place.subAdministrativeArea!.toString();
       // log(place.subAdministrativeArea.toString());
     }).catchError((e) {

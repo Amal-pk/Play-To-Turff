@@ -11,10 +11,13 @@ import 'package:turf_app/view/spot/controller/sopt_controller.dart';
 class Spot extends StatelessWidget {
   Spot({super.key});
   final LocationController locationController = Get.put(LocationController());
-  final HomePageController nearbyController = Get.put(HomePageController());
+  // final HomePageController nearbyController = Get.put(HomePageController());
 
   @override
   Widget build(BuildContext context) {
+    final HomePageController nearbyController =
+        Provider.of<HomePageController>(context);
+
     final SoptController controller =
         Provider.of<SoptController>(context, listen: false);
     WidgetsBinding.instance.addPostFrameCallback(((timeStamp) {
@@ -38,14 +41,15 @@ class Spot extends StatelessWidget {
                           Icons.location_on,
                           size: 18,
                         ),
-                        Obx(
-                          () => Text(
+                        Consumer<HomePageController>(
+                            builder: (context, value, _) {
+                          return Text(
                               ' ${locationController.currentAddress.value}',
                               style: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.black,
-                              )),
-                        ),
+                              ));
+                        }),
                       ],
                     ),
                     const Icon(Icons.notifications)
@@ -61,9 +65,9 @@ class Spot extends StatelessWidget {
                   child: TextFormField(
                     onChanged: (value) {
                       if (value.isNotEmpty) {
-                        nearbyController.isSearchClick.value = true;
+                        nearbyController.isSearchClick = true;
                       } else {
-                        nearbyController.isSearchClick.value = false;
+                        nearbyController.isSearchClick = false;
                       }
                       controller.search(value);
                     },
@@ -78,18 +82,18 @@ class Spot extends StatelessWidget {
                     keyboardType: TextInputType.name,
                   ),
                 ),
-                Obx(
-                  () => AnimatedCrossFade(
+                Consumer<HomePageController>(builder: (context, value, _) {
+                  return AnimatedCrossFade(
                     firstChild: const AllTruffDisplay(),
                     secondChild: const SearchView(),
-                    crossFadeState: nearbyController.isSearchClick.value
+                    crossFadeState: nearbyController.isSearchClick
                         ? CrossFadeState.showSecond
                         : CrossFadeState.showFirst,
                     duration: const Duration(milliseconds: 300),
                     // firstCurve: Curves.bounceOut,
                     // secondCurve: Curves.,
-                  ),
-                ),
+                  );
+                }),
                 height20,
               ],
             ),

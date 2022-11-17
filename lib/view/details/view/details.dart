@@ -19,6 +19,7 @@ class Details extends StatelessWidget {
     details.turfImages!.turfImages2!,
     details.turfImages!.turfImages3!
   ];
+
   @override
   Widget build(BuildContext context) {
     final bookincontroller = Provider.of<BookinController>(context);
@@ -114,14 +115,26 @@ class Details extends StatelessWidget {
                 ),
               ),
               height20,
-              Text(
-                "${details.turfPlace.toString()},${details.turfDistrict.toString()}",
-                style: const TextStyle(fontSize: 20, color: Colors.black),
-              ),
-              height20,
+              // Text(
+              //   "${details.turfPlace.toString()},${details.turfDistrict.toString()}",
+              //   style: const TextStyle(fontSize: 20, color: Colors.black),
+              // ),
+              //  Consumer<DetailsController>(builder: (context, value, _) {
+              //       return ElevatedButton(
+              //         onPressed: () {
+              //           value.priceOntap();
+              //         },
+              //         child: const Text("Price"),
+              //       );
+              //     }),
+              // height20,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Text(
+                    "${details.turfPlace.toString()},${details.turfDistrict.toString()}",
+                    style: const TextStyle(fontSize: 20, color: Colors.black),
+                  ),
                   Consumer<DetailsController>(builder: (context, value, _) {
                     return ElevatedButton(
                       onPressed: () {
@@ -130,14 +143,58 @@ class Details extends StatelessWidget {
                       child: const Text("Price"),
                     );
                   }),
-                  ElevatedButton(
-                    onPressed: (() {}),
-                    child: const Text("Location"),
-                  )
+                  // ,
+                  // Consumer<DetailsController>(builder: (context, value, _) {
+                  //   return ElevatedButton(
+                  //     onPressed: () {
+                  //       value.priceOntap();
+                  //     },
+                  //     child: const Text("Price"),
+                  //   );
+                  // }),
+                  // ElevatedButton(
+                  //   onPressed: (() {}),
+                  //   child: const Text("Location"),
+                  // )
                 ],
               ),
-              PriceDetailsWidget(
-                detail: details,
+              height20,
+              Row(
+                children: [
+                  PriceDetailsWidget(
+                    // detail: details,
+                    dayTimes: "Morning Price",
+                    icon: const Icon(
+                      Icons.wb_sunny,
+                      color: Colors.yellow,
+                      size: 25,
+                    ),
+                    price: details.turfPrice!.morningPrice.toString(),
+                    clr: const Color.fromARGB(255, 242, 238, 192),
+                  ),
+                  PriceDetailsWidget(
+                    // detail: details,
+                    dayTimes: "Afternoon Price",
+                    icon: const Icon(
+                      Icons.wb_sunny,
+                      color: Colors.orange,
+                      size: 25,
+                    ),
+                    price: details.turfPrice!.afternoonPrice.toString(),
+                    clr: const Color.fromARGB(255, 240, 220, 190),
+                  ),
+                  PriceDetailsWidget(
+                    // detail: details,
+                    dayTimes: "Evening Price",
+                    icon: const Icon(
+                      Icons.nights_stay,
+                      color: Colors.blueGrey,
+                      size: 25,
+                    ),
+                    price: details.turfPrice!.eveningPrice.toString(),
+                    clr: const Color.fromARGB(255, 198, 226, 239),
+                  ),
+                ],
               ),
               const Text(
                 "Amenities",
@@ -147,7 +204,17 @@ class Details extends StatelessWidget {
                 ),
               ),
               height20,
-              AmenititesWidget(details: details),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Wrap(
+                  children: List.generate(
+                    1,
+                    ((index) => AmenititesWidget(
+                          details: details,
+                        )),
+                  ),
+                ),
+              ),
               height20,
             ],
           ),
