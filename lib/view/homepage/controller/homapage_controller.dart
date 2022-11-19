@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:turf_app/view/bottom_navigation/controller/bottomnavigation_controller.dart';
 import 'package:turf_app/view/homepage/controller/location_controller.dart';
 import 'package:turf_app/view/homepage/model/nearbymodel/datum_model.dart';
 import 'package:turf_app/view/homepage/model/nearbymodel/nearbymoel.dart';
@@ -20,7 +22,7 @@ class HomePageController extends ChangeNotifier {
     isLoading = true;
     SharedPreferences sp = await SharedPreferences.getInstance();
     final token = sp.getString("Token");
-    log(token.toString());
+    // log(token.toString());
     final place = controller.district;
     log("+++++++++++++++++++++++++++++++${place.toString()}");
     HomeResponse? nearbyResponse =
@@ -43,7 +45,6 @@ class HomePageController extends ChangeNotifier {
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => const LoginPage()),
         (Route<dynamic> route) => false);
-
     notifyListeners();
   }
 }

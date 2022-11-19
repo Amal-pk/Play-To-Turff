@@ -169,6 +169,7 @@ class BookingPage extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                height10,
                                 const Text(
                                   'Are You Sure to payment',
                                   style: TextStyle(fontSize: 25),
@@ -184,6 +185,15 @@ class BookingPage extends StatelessWidget {
                                       padding: const EdgeInsets.all(16.0),
                                       child: ElevatedButton(
                                         onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text("Cancel"),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: ElevatedButton(
+                                        onPressed: () {
                                           // controller.continueBooking(
                                           //     bookingDetails, context);
                                           controller.razorpayOption(
@@ -195,15 +205,6 @@ class BookingPage extends StatelessWidget {
                                         child: const Text("Continue"),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(16.0),
-                                      child: ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: const Text("Cancel"),
-                                      ),
-                                    )
                                   ],
                                 )
                               ],

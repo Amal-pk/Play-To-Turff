@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/core.dart';
@@ -27,41 +26,46 @@ class HomeDisplay extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
           padding: const EdgeInsets.all(16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Hai, Amal ",
-                      style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    FittedBox(
-                      child: Text(
-                        "Explore vanues and \nbook your favourite \nspot... ",
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "Hello",
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 20,
                           color: Colors.white,
-                          fontWeight: FontWeight.w400,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                  ],
+                      height10,
+                      FittedBox(
+                        child: Text(
+                          "Explore vanues and book \nyour favourite spot... ",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Image.asset(
-                "asset/image/images.jpg",
-                height: high / 5,
-                width: wid / 3,
-              ),
-            ],
+                Expanded(
+                  child: Image.asset(
+                    "asset/image/images.jpg",
+                    height: high / 5,
+                    width: wid / 3,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
         height10,

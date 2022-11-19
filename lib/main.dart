@@ -10,6 +10,7 @@ import 'package:turf_app/view/login/login_page/view_controller/login_controller.
 import 'package:turf_app/view/login/mobile_verification/controller/mobileveri_controller.dart';
 import 'package:turf_app/view/login/mobilenumber/controller/controller.dart';
 import 'package:turf_app/view/login/register_page/view_controller/register_controller.dart';
+import 'package:turf_app/view/splash_screen/controller/afterlogin_controller.dart';
 import 'package:turf_app/view/spot/controller/sopt_controller.dart';
 import 'package:turf_app/view/splash_screen/veiw/splash_screen.dart';
 
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: ((context) => LoginController()),
+        ),
+        ChangeNotifierProvider(
+          create: ((context) => AfterLoginController()),
         ),
         ChangeNotifierProvider(
           create: ((context) => SignupController()),

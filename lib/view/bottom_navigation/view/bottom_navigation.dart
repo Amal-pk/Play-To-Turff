@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/bottom_navigation/controller/bottomnavigation_controller.dart';
 import 'package:turf_app/view/homepage/view/home_page.dart';
-import 'package:turf_app/view/profile/profile.dart';
+import 'package:turf_app/view/profile/view/profile.dart';
 import 'package:turf_app/view/spot/view/sopt.dart';
 
 class BottomNavigation extends StatelessWidget {
@@ -18,7 +18,7 @@ class BottomNavigation extends StatelessWidget {
         Provider.of<BottomNavigationBarController>(context);
     int currentScreenIndex = screenindexprovider.currentIndexSearch();
     return Scaffold(
-      body: screens[currentScreenIndex],
+      body: screens[currentScreenIndex], 
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
         selectedItemColor: Colors.black,
