@@ -26,7 +26,7 @@ class AllTruffDisplay extends StatelessWidget {
                       () => Details(
                         details: altruf,
                       ),
-                    ); 
+                    );
                   },
                   child: Container(
                     margin: const EdgeInsets.all(10),

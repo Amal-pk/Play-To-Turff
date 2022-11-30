@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/core.dart';
-import 'package:turf_app/view/details/controller/details_controller.dart';
 import 'package:turf_app/view/homepage/controller/homapage_controller.dart';
 import 'package:turf_app/view/homepage/view/widget/view_all.dart';
 import 'package:turf_app/view/homepage/view/widget/gridview.dart';
@@ -19,77 +18,21 @@ class HomeDisplay extends StatelessWidget {
     return Column(
       children: [
         Container(
+          margin: const EdgeInsets.all(10),
           height: high / 6,
           width: wid,
           decoration: BoxDecoration(
-            color: Colors.green,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          padding: const EdgeInsets.all(16),
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text(
-                        "Hello",
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      height10,
-                      FittedBox(
-                        child: Text(
-                          "Explore vanues and book \nyour favourite spot... ",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Image.asset(
-                    "asset/image/images.jpg",
-                    height: high / 5,
-                    width: wid / 3,
-                  ),
-                ),
-              ],
+            borderRadius: BorderRadius.circular(10),
+            image: const DecorationImage(
+              // filterQuality: FilterQuality.medium,
+              fit: BoxFit.fill,
+              image: AssetImage("asset/image/football_d.webp"),
             ),
           ),
         ),
         height10,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Divider(),
-            Consumer<DetailsController>(
-              builder: (context, value, _) {
-                return TextButton(
-                  onPressed: (() {
-                    value.allTurfView();
-                  }),
-                  child: const Text(
-                    "veiw all",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ],
+        const Divider(
+          thickness: 2,
         ),
         Consumer<HomePageController>(builder: (context, value, _) {
           return controller.isLoading

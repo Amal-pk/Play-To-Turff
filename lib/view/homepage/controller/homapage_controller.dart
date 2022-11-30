@@ -24,10 +24,10 @@ class HomePageController extends ChangeNotifier {
     final token = sp.getString("Token");
     // log(token.toString());
     final place = controller.district;
-    log("+++++++++++++++++++++++++++++++${place.toString()}");
+    // log("+++++++++++++++++++++++++++++++${place.toString()}");
     HomeResponse? nearbyResponse =
         await NearbyService.instance.nearbyTurf("Malappuram", token!);
-    log(controller.district.toString());
+    // log(controller.district.toString());
     if (nearbyResponse != null && nearbyResponse.status == true) {
       near.clear();
       near.addAll(nearbyResponse.data!);

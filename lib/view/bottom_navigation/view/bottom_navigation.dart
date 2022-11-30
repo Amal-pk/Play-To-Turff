@@ -7,9 +7,9 @@ import 'package:turf_app/view/spot/view/sopt.dart';
 
 class BottomNavigation extends StatelessWidget {
   BottomNavigation({super.key});
- final List<dynamic> screens = [
+  final List<dynamic> screens = [
     HomePage(),
-     Spot(),
+    Spot(),
     Profile(),
   ];
   @override
@@ -18,12 +18,12 @@ class BottomNavigation extends StatelessWidget {
         Provider.of<BottomNavigationBarController>(context);
     int currentScreenIndex = screenindexprovider.currentIndexSearch();
     return Scaffold(
-      body: screens[currentScreenIndex], 
+      body: screens[currentScreenIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
         selectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
-        showSelectedLabels: false,
+        // showSelectedLabels: false,
         elevation: 0,
         currentIndex: currentScreenIndex,
         onTap: (value) => screenindexprovider.currentIndexResult(value),

@@ -5,6 +5,7 @@ import 'package:turf_app/view/core.dart';
 import 'package:turf_app/view/homepage/controller/homapage_controller.dart';
 import 'package:turf_app/view/homepage/controller/location_controller.dart';
 import 'package:turf_app/view/homepage/view/widget/home_display.dart';
+import 'package:turf_app/view/homepage/view/widget/search.dart';
 import 'package:turf_app/view/homepage/view/widget/sreach_gridview.dart';
 import 'package:turf_app/view/spot/controller/sopt_controller.dart';
 
@@ -52,7 +53,6 @@ class HomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const Icon(Icons.notifications)
                   ],
                 ),
                 height10,
@@ -64,29 +64,39 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 16),
                   child: Padding(
                     padding: const EdgeInsets.all(2.0),
-                    child: TextFormField(
-                      onChanged: (value) {
-                        if (value.isNotEmpty) {
-                          homePageController.isSearchClick = true;
-                        } else {
-                          homePageController.isSearchClick = false;
-                        }
-                        controller.search(value);
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => const Search()),
+                          ),
+                        );
                       },
-                      decoration: const InputDecoration(
-                        hintText: 'Search',
-                        suffixIcon: Icon(
-                          Icons.search,
-                          color: Colors.black,
+                      child: TextFormField(
+                        onChanged: (value) {
+                          if (value.isNotEmpty) {
+                            homePageController.isSearchClick = true;
+                          } else {
+                            homePageController.isSearchClick = false;
+                          }
+                          controller.search(value);
+                        },
+                        decoration: const InputDecoration(
+                          hintText: 'Search',
+                          suffixIcon: Icon(
+                            Icons.search,
+                            color: Colors.black,
+                          ),
+                          border: InputBorder.none,
                         ),
-                        border: InputBorder.none,
+                        keyboardType: TextInputType.name,
                       ),
-                      keyboardType: TextInputType.name,
                     ),
                   ),
                 ),
                 height20,
-                // HomeDisplay()
+                // HomeDisplay(),
                 // const SearchView(),
                 Consumer<HomePageController>(builder: (context, value, _) {
                   return AnimatedCrossFade(

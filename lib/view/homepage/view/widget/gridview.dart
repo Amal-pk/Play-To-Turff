@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:turf_app/view/core.dart';
+import 'package:turf_app/view/details/controller/details_controller.dart';
 import 'package:turf_app/view/details/view/details.dart';
 import 'package:turf_app/view/homepage/controller/homapage_controller.dart';
 import 'package:turf_app/view/homepage/controller/location_controller.dart';
@@ -13,29 +14,52 @@ class GridviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final high = MediaQuery.of(context).size.height;
-    // final wid = MediaQuery.of(context).size.width;
-    final HomePageController homePageController = Provider.of<HomePageController>(context);
-
+    final wid = MediaQuery.of(context).size.width;
+    final HomePageController homePageController =
+        Provider.of<HomePageController>(context);
+    final itemHigh = (high - kToolbarHeight - 24) / 3.4;
+    final itemWidth = wid / 2;
     return Consumer<HomePageController>(builder: (context, value, _) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          FittedBox(
-            child: Text(
-              "Near by Grounds",
-              style: TextStyle(
-                fontSize: high / 35,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 0,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              FittedBox(
+                child: Text(
+                  "Near by Grounds",
+                  style: TextStyle(
+                    fontSize: high / 35,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0,
+                  ),
+                ),
               ),
-            ),
+              Consumer<DetailsController>(
+                builder: (context, value, _) {
+                  return TextButton(
+                    onPressed: (() {
+                      value.allTurfView();
+                    }),
+                    child: const Text(
+                      "veiw all",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              // childAspectRatio: (high / 2) / (wid / 5),
+              childAspectRatio: (itemWidth / itemHigh),
             ),
             itemCount: homePageController.near.length,
             itemBuilder: (BuildContext context, int index) {
@@ -62,6 +86,7 @@ class GridviewPage extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
+                      height10,
                       CircleAvatar(
                         radius: high / 22,
                         child: Image(

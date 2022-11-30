@@ -19,7 +19,7 @@ class BookingPage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    final payController = Provider.of<PaymentController>(context);
+    // final payController = Provider.of<PaymentController>(context);
     final controller = Provider.of<BookinController>(context);
     final wid = MediaQuery.of(context).size.width;
     final high = MediaQuery.of(context).size.height;
@@ -233,11 +233,12 @@ class BookingPage extends StatelessWidget {
 }
 
 Widget buildImage(String imageUrl, int index) => Container(
-      padding: const EdgeInsets.all(10),
-      // height: 10,
+      margin: const EdgeInsets.all(8),
+      height: 200,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
         image: DecorationImage(
+          fit: BoxFit.fill,
           image: NetworkImage(imageUrl),
         ),
       ),

@@ -103,6 +103,8 @@ class Details extends StatelessWidget {
                   autoPlayInterval: const Duration(seconds: 5),
                   autoPlay: true,
                   height: 200,
+                  aspectRatio: 2.0,
+                  enlargeCenterPage: true,
                 ),
               ),
               height20,
@@ -258,11 +260,13 @@ class Details extends StatelessWidget {
 }
 
 Widget buildImage(String imageUrl, int index) => Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      // padding: const EdgeInsets.symmetric(horizontal: 8),
+      margin: const EdgeInsets.all(8),
       height: 200,
       decoration: BoxDecoration(
-        // borderRadius: BorderRadius.circular(60),
+        borderRadius: BorderRadius.circular(10),
         image: DecorationImage(
+          fit: BoxFit.fill,
           image: NetworkImage(imageUrl),
         ),
       ),

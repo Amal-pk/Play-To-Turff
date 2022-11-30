@@ -167,7 +167,7 @@ class BookinController extends ChangeNotifier {
     log("send to backend $sendToBackend");
     notifyListeners();
   }
-//------------------------------------------------------------------------------------------------------------
+/////////////////////////////////////
 
   bool isAvailableCheckFunction({
     required String item,
@@ -257,7 +257,10 @@ class BookinController extends ChangeNotifier {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     continueBooking(id, cxt);
-    Get.offAll(() => BottomNavigation());
+    Navigator.of(cxt).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => BottomNavigation()),
+        (Route<dynamic> route) => false);
+    notifyListeners();
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {}

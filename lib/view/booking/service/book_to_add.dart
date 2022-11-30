@@ -23,9 +23,7 @@ class BookingServiceAdd {
         return true;
       }
     } on DioError catch (e) {
-      return errorCode.status401(
-        e,
-      );
+      return errorCode.status401(e);
     } catch (e) {
       const SnackBar(
         content: Text('Error Founded'),

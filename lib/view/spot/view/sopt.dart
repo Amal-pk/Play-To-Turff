@@ -20,9 +20,9 @@ class Spot extends StatelessWidget {
 
     final SoptController controller =
         Provider.of<SoptController>(context, listen: false);
-    WidgetsBinding.instance.addPostFrameCallback(((timeStamp) {
-      controller.oninit();
-    }));
+    // WidgetsBinding.instance.addPostFrameCallback(((timeStamp) {
+    //   controller.allTruff;
+    // }));
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
